@@ -1,0 +1,401 @@
+/* 
+ * JD Softwares - Premium Dark SaaS Theme CSS
+ * Author: Antigravity Code Assistant
+ * Designed for: JD Softwares IT Company
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #00d2ff;
+    --primary-rgb: 0, 210, 255;
+    --secondary: #6100fd;
+    --secondary-rgb: 97, 0, 253;
+    --accent: #00f2fe;
+    --dark-bg: #030712;
+    --dark-bg-alt: #080c18;
+    --text-light: #f9fafb;
+    --text-muted: #9ca3af;
+    --glass-bg: rgba(15, 23, 42, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-hover: rgba(0, 242, 254, 0.25);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --gradient-1: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+    --gradient-2: linear-gradient(135deg, #b155ff 0%, #6100fd 100%);
+    --gradient-3: linear-gradient(135deg, #00f2fe 0%, #6100fd 100%);
+    --gradient-glow: 0 8px 32px 0 rgba(0, 242, 254, 0.15);
+}
+
+/* Base resets & styles */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+p {
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-2);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-3);
+}
+
+/* Ambient Ambient Glows */
+.ambient-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(150px);
+    opacity: 0.12;
+    pointer-events: none;
+    z-index: 0;
+}
+.glow-primary {
+    background: var(--primary);
+    top: 5%;
+    left: -10%;
+}
+.glow-secondary {
+    background: var(--secondary);
+    top: 45%;
+    right: -10%;
+}
+.glow-accent {
+    background: var(--accent);
+    bottom: 5%;
+    left: 20%;
+}
+
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: var(--gradient-3);
+    z-index: 99999;
+    box-shadow: 0 2px 10px rgba(0, 242, 254, 0.4);
+}
+
+/* Spinner Loader */
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    background-color: var(--dark-bg) !important;
+    z-index: 999999;
+}
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 210, 255, 0.1);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Glassmorphic Navbar */
+.navbar {
+    transition: all 0.4s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(3, 7, 18, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 9999;
+}
+.navbar.sticky-top {
+    background: rgba(3, 7, 18, 0.85) !important;
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    padding: 12px 0 !important;
+}
+.navbar-brand h1 {
+    font-size: 26px;
+    font-weight: 800;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--text-light) !important;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 24px 15px !important;
+    transition: all 0.3s ease;
+    font-family: var(--font-body);
+}
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--primary) !important;
+}
+.navbar-dark .navbar-toggler {
+    border-color: var(--glass-border);
+    color: var(--primary);
+}
+.navbar-dark .navbar-toggler-icon {
+    filter: invert(1);
+}
+.dropdown-menu {
+    background: rgba(8, 12, 24, 0.95) !important;
+    border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(15px);
+    border-radius: 12px !important;
+    padding: 10px;
+    margin-top: 10px !important;
+}
+.dropdown-item {
+    color: var(--text-muted) !important;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+.dropdown-item:hover, .dropdown-item.active {
+    background: rgba(0, 210, 255, 0.1) !important;
+    color: var(--primary) !important;
+    transform: translateX(5px);
+}
+
+/* Custom Gradient Button */
+.btn-gradient {
+    background: var(--gradient-3);
+    color: #ffffff !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 28px;
+    font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-2);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(97, 0, 253, 0.4);
+}
+.btn-gradient:hover::before {
+    opacity: 1;
+}
+
+.btn-gradient-outline {
+    background: transparent;
+    color: #ffffff !important;
+    font-weight: 600;
+    border: 2px solid transparent;
+    border-image: var(--gradient-1) 1;
+    border-radius: 0px; /* Bootstrap borders inside clip-path */
+    padding: 10px 26px;
+    font-size: 15px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+/* Re-styling button border-radius with gradient */
+.btn-outline-glow {
+    background: transparent;
+    color: #ffffff !important;
+    border: 1.5px solid var(--primary);
+    border-radius: 30px;
+    padding: 12px 28px;
+    font-size: 15px;
+    transition: all 0.4s ease;
+}
+.btn-outline-glow:hover {
+    background: rgba(0, 210, 255, 0.08);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Glassmorphic Premium Card */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255,255,255,0.06), transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.glass-card:hover::before {
+    opacity: 1;
+}
+.glass-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 15px 35px rgba(0, 210, 255, 0.08), 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #b155ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Hero Section */
+.hero-wrapper {
+    position: relative;
+    padding: 160px 0 100px 0;
+    background: radial-gradient(circle at 80% 20%, rgba(97, 0, 253, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(0, 210, 255, 0.1) 0%, transparent 50%);
+    overflow: hidden;
+}
+.hero-title {
+    font-size: 54px;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 38px;
+    }
+}
+.hero-sub {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+/* Floating Badges & Visuals */
+.hero-visual-wrapper {
+    position: relative;
+    z-index: 5;
+}
+.floating-badge {
+    position: absolute;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.badge-react {
+    top: 10%;
+    left: 5%;
+    border-left: 3px solid #61dafb;
+    animation-delay: 0.5s;
+}
+.badge-spring {
+    bottom: 15%;
+    left: -5%;
+    border-left: 3px solid #6db33f;
+    animation-delay: 1.2s;
+}
+.badge-aws {
+    top: 50%;
+    right: -2%;
+    border-left: 3px solid #ff9900;
+    animation-delay: 2s;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+/* Code Editor Window mockup */
+.code-window {
+    background: rgba(8, 12, 24, 0.75);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    overflow: hidden;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.code-header {
+    background: rgba(15, 23, 42, 0.9);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+.code-dot {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
