@@ -1542,7 +1542,7 @@ iframe{
 }
 
 .navbar-logo{
-    height:50px;
+    height:40px;
     width:auto;
     object-fit:contain;
     transition:.3s ease;
@@ -1551,7 +1551,7 @@ iframe{
 @media (max-width:991.98px){
 
     .navbar-logo{
-        height:50px;
+        height:40px;
     }
 
 }
@@ -1559,7 +1559,7 @@ iframe{
 @media (max-width:576px){
 
     .navbar-logo{
-        height:35px;
+        height:30px;
     }
 
 }
