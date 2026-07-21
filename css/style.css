@@ -6,6 +6,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
+
 :root {
     --primary: #00d2ff;
     --primary-rgb: 0, 210, 255;
@@ -215,7 +216,7 @@ a:hover {
     backdrop-filter: blur(15px);
     border-radius: 12px !important;
     padding: 10px;
-    margin-top: 10px !important;
+    margin-top: 0px !important;
 }
 
 .dropdown-item {
@@ -1505,7 +1506,7 @@ body{
 }
 
 .container-fluid{
-    overflow:hidden;
+    overflow: visible !important;
 }
 
 .hero-wrapper,
@@ -1567,19 +1568,11 @@ iframe{
         width:50px;
         height:50px;
     }
-    .glass-input{
-        border-top-right-radius:0 !important;
-        border-bottom-right-radius:0 !important;
-    }
 
     .footer .d-flex{
         justify-content:center;
     }
 
-}
-.glass-input{
-    border-top-right-radius:0 !important;
-    border-bottom-right-radius:0 !important;
 }
 
 /* CROSONIC Logo */
@@ -1705,4 +1698,243 @@ iframe{
 
 .navbar-toggler:hover .fa-bars{
     color: var(--text-light);
+}
+
+/* Navbar Submenu dropdown */
+.dropdown-submenu{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.submenu-toggle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: .45rem 1rem;   /* Same as .dropdown-item */
+    margin: 0;
+}
+
+.submenu-toggle i{
+    font-size: 11px;
+    margin-left: 12px;
+}
+
+/* Right side submenu */
+.dropdown-submenu > .submenu{
+    position: absolute;
+    top: -1px;
+    left: 100%;
+
+    margin: 0;
+    padding: .5rem 0;
+
+    min-width: 200px;
+    display: none;
+}
+
+.dropdown-submenu:hover > .submenu{
+    display: block;
+}
+
+.dropdown-divider{
+    margin: 0.4rem 0 !important;
+}
+.dropdown-submenu{
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+.dropdown-divider{
+    margin: .15rem 0 !important;
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* Mobile submenu styles */
+@media (max-width: 991.98px) {
+    .dropdown-submenu{
+        display: none;
+    }
+
+    .dropdown-submenu > .submenu{
+        position: static;
+        left: 0;
+        margin-top: 0;
+        padding-left: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .dropdown-submenu > .submenu.show{
+        display: block;
+    }
+    .submenu-toggle{
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown-divider,
+.menu-separator {
+    display: none !important;
+}
+}
+
+/* ==========================
+   Consultation Popup
+========================== */
+
+/* Popup */
+.consultation-popup{
+
+    position: fixed;
+
+    right: 105px;
+    bottom: 25px;
+
+    width: 330px;
+
+    background: #0d1117;   /* Dark Background */
+
+    border: 1px solid rgba(0,210,255,.15);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    z-index: 9999;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55),
+        0 0 25px rgba(0,210,255,.08);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    display: none;
+
+    animation: popupSlide .45s ease;
+}
+
+.btn-outline-secondary{border-radius: 10px;}
+
+/* Buttons Row */
+.popup-actions{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.popup-actions .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.popup-actions .btn-outline-secondary{
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.15);
+    color: #aab4c5;
+}
+
+.popup-actions .btn-outline-secondary:hover{
+    color: #fff;
+    border-color: var(--primary);
+    background: rgba(0,210,255,.08);
+}
+
+/* Mobile */
+@media (max-width:768px){
+
+    .consultation-popup{
+        left: 15px;
+        right: 15px;
+        bottom: 140px;
+        width: auto;
+    }
+
+    /* Buttons ek hi row me rahenge */
+    .popup-actions{
+
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .popup-actions .btn{
+
+        flex: 1;
+        height: 44px;
+        font-size: 13px;
+        padding: 0 10px;
+    }
+}
+
+
+.about-card{
+    max-width: 450px;
+}
+
+@media (max-width: 768px) {
+
+    .container,
+    .container-fluid {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .glass-card {
+        padding: 0.85rem !important;   /* ~14px */
+        width: 100%;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Compact contact form on mobile */
+    .glass-card.p-5{
+        padding: 1rem !important;
+    }
+
+    .row.g-3{
+        gap: 0.5rem !important;
+    }
+
+    .form-label{
+        font-size: 12px !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    .form-control,
+    .form-select{
+        padding: 0.5rem !important;
+        font-size: 14px !important;
+    }
+
+    textarea.form-control{
+        min-height: 80px !important;
+    }
+
+    .btn{
+        padding: 0.5rem 1rem !important;
+        font-size: 14px !important;
+    }
+
+    h3{
+        font-size: 18px !important;
+        margin-bottom: 1rem !important;
+    }
+
+}
+
+.navbar,
+.navbar-collapse,
+.dropdown-menu,
+.dropdown-submenu{
+    overflow: visible !important;
 }

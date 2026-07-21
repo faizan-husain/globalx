@@ -211,4 +211,101 @@
         }
     });
 
+    // Handle URL parameter for portfolio filter
+    $(window).on('load', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const filterParam = urlParams.get('filter');
+        
+        if (filterParam) {
+            const $filterBtn = $('.portfolio-filter-btn[data-filter="' + filterParam + '"]');
+            if ($filterBtn.length > 0) {
+                $filterBtn.click();
+            }
+        }
+    });
+
 })(jQuery);
+
+
+/* ==========================
+   Consultation Popup
+========================== */
+const POPUP_DELAY = 20000; // 20 seconds
+const DISMISS_DAYS = 7;
+
+// Check if popup should be shown
+function shouldShowPopup() {
+
+    // User already clicked Get Started
+    if (localStorage.getItem("consultationStarted")) {
+        return false;
+    }
+
+    // User clicked No Thanks
+    const dismissedTime = localStorage.getItem("consultationDismissed");
+
+    if (!dismissedTime) {
+        return true;
+    }
+
+    const daysPassed =
+        (Date.now() - Number(dismissedTime)) / (1000 * 60 * 60 * 24);
+
+    return daysPassed >= DISMISS_DAYS;
+}
+
+// Show popup
+function showConsultationPopup() {
+
+    if (!shouldShowPopup()) return;
+
+    document.getElementById("consultationPopup").style.display = "block";
+}
+
+// Timer
+const popupTimer = setTimeout(showConsultationPopup, POPUP_DELAY);
+
+// Scroll trigger
+window.addEventListener("scroll", function () {
+
+    if (!shouldShowPopup()) return;
+
+    const scrollPercent =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+
+    if (scrollPercent >= 50) {
+
+        clearTimeout(popupTimer);
+
+        showConsultationPopup();
+    }
+
+}, { once: true });
+
+
+// =========================
+// No Thanks
+// =========================
+
+document.getElementById("dismissPopup").addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    document.getElementById("consultationPopup").style.display = "none";
+
+    // Save current time
+    localStorage.setItem("consultationDismissed", Date.now());
+
+});
+
+
+// =========================
+// Get Started
+// =========================
+
+document.getElementById("startProjectBtn").addEventListener("click", function () {
+
+    // Never show popup again
+    localStorage.setItem("consultationStarted", "true");
+
+});
