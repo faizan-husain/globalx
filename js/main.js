@@ -197,32 +197,175 @@
         }, 1500);
     });
 
-    // 11. Custom Portfolio Filters
-    $(document).on('click', '.portfolio-filter-btn', function () {
-        const filterValue = $(this).attr('data-filter');
-        $('.portfolio-filter-btn').removeClass('active');
-        $(this).addClass('active');
+    // 11. Custom Portfolio Filters + Load More
+// 11. Custom Portfolio Filters + Load More
+$(document).on('click', '.portfolio-filter-btn', function () {
 
-        if (filterValue === 'all') {
-            $('.portfolio-item-wrapper').fadeIn(400);
+    const filterValue = $(this).attr('data-filter');
+
+    $('.portfolio-filter-btn').removeClass('active');
+    $(this).addClass('active');
+
+    // Reset pagination
+    currentPage = 1;
+
+    const $items = $('.portfolio-item-wrapper');
+
+    // Apply filter without showing all cards first
+    $items.each(function () {
+
+        const $item = $(this);
+        const category = $item.attr('data-category');
+
+        if (filterValue === 'all' || category === filterValue) {
+            $item.removeClass('filter-hidden');
         } else {
-            $('.portfolio-item-wrapper').hide();
-            $('.portfolio-item-wrapper[data-category="' + filterValue + '"]').fadeIn(400);
+            $item.addClass('filter-hidden hidden');
         }
     });
 
-    // Handle URL parameter for portfolio filter
-    $(window).on('load', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const filterParam = urlParams.get('filter');
-        
-        if (filterParam) {
-            const $filterBtn = $('.portfolio-filter-btn[data-filter="' + filterParam + '"]');
-            if ($filterBtn.length > 0) {
-                $filterBtn.click();
-            }
+    // Show only first 6 matching cards
+    updatePortfolioItems();
+
+    // Update Load More
+    updateLoadMoreButton();
+});
+
+
+// Handle URL parameter for portfolio filter
+$(window).on('load', function () {
+
+    // Initialize Load More first
+    initLoadMore();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+
+    if (filterParam) {
+
+        const $filterBtn =
+            $('.portfolio-filter-btn[data-filter="' + filterParam + '"]');
+
+        if ($filterBtn.length > 0) {
+            $filterBtn.trigger('click');
+        }
+    } else {
+
+        // Initial state
+        updatePortfolioItems();
+        updateLoadMoreButton();
+    }
+});
+
+
+// ================================
+// Load More Functionality
+// ================================
+
+let currentPage = 1;
+const itemsPerPage = 6;
+
+
+function initLoadMore() {
+
+    const $loadMoreBtn = $('#loadMoreBtn');
+
+    // Remove previous click handler
+    $loadMoreBtn.off('click.loadMore');
+
+    // Load More click
+    $loadMoreBtn.on('click.loadMore', function () {
+
+        currentPage++;
+
+        updatePortfolioItems();
+        updateLoadMoreButton();
+
+    });
+
+    // Initial state
+    updatePortfolioItems();
+    updateLoadMoreButton();
+}
+
+
+// ================================
+// Update Portfolio Items
+// ================================
+
+function updatePortfolioItems() {
+
+    const $items = $('.portfolio-item-wrapper');
+    let visibleCount = 0;
+
+    $items.each(function () {
+
+        const $item = $(this);
+
+        // Filtered-out cards stay hidden
+        if ($item.hasClass('filter-hidden')) {
+            $item.addClass('hidden');
+            return;
+        }
+
+        if (visibleCount < currentPage * itemsPerPage) {
+
+            $item.removeClass('hidden');
+            visibleCount++;
+
+        } else {
+
+            $item.addClass('hidden');
         }
     });
+}
+
+
+// ================================
+// Update Load More Button
+// ================================
+
+function updateLoadMoreButton() {
+
+    const $items = $('.portfolio-item-wrapper');
+    const $loadMoreBtn = $('#loadMoreBtn');
+
+    // Count ONLY cards belonging to current filter
+    const totalFilteredItems =
+        $items.not('.filter-hidden').length;
+
+    // Count cards currently displayed
+    const visibleFilteredItems =
+        $items.not('.filter-hidden').not('.hidden').length;
+
+
+    // --------------------------------
+    // 6 or fewer cards
+    // --------------------------------
+
+    if (totalFilteredItems <= itemsPerPage) {
+
+        $loadMoreBtn.addClass('hidden');
+
+        return;
+    }
+
+
+    // --------------------------------
+    // More cards available
+    // --------------------------------
+
+    if (visibleFilteredItems < totalFilteredItems) {
+
+        $loadMoreBtn.removeClass('hidden');
+
+    } else {
+
+        // All filtered cards already visible
+        $loadMoreBtn.addClass('hidden');
+
+    }
+}
 
 })(jQuery);
 

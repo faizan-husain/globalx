@@ -4,7 +4,7 @@
  * Designed for: Crosonic Technologies IT Company
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 
 :root {
@@ -20,8 +20,8 @@
     --glass-bg: rgba(15, 23, 42, 0.55);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-border-hover: rgba(0, 242, 254, 0.25);
-    --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
     --gradient-1: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
     --gradient-2: linear-gradient(135deg, #b155ff 0%, #6100fd 100%);
     --gradient-3: linear-gradient(135deg, #00f2fe 0%, #6100fd 100%);
@@ -1783,6 +1783,60 @@ iframe{
 }
 }
 
+/* Portfolio Load More functionality */
+.portfolio-item-wrapper {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.portfolio-item-wrapper.hidden {
+    display: none;
+}
+
+.portfolio-item-wrapper.visible {
+    display: block;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.load-more-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    color: #030712;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 30px;
+}
+
+.load-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.3);
+}
+
+.load-more-btn.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .load-more-btn {
+        width: auto;
+        min-width: 180px; /* Apni requirement ke hisaab se 160px-220px */
+        padding: 12px 24px;
+    }
+}
+
 /* ==========================
    Consultation Popup
 ========================== */
@@ -1937,4 +1991,218 @@ iframe{
 .dropdown-menu,
 .dropdown-submenu{
     overflow: visible !important;
+}
+
+
+
+/* Product card image */
+.portfolio-card{
+  margin: 20px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.portfolio-img-wrapper{
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio-img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;   /* image poori dikhegi */
+    background: #0d0d0d;
+}
+
+@media (max-width:768px){
+
+    .portfolio-img-wrapper{
+        height:180px;
+        border-radius: 14px 14px 14px 14px;
+    }
+
+    .portfolio-content{
+        padding:20px;
+    }
+
+
+}
+
+/* footer location separation */
+.footer-location-secondary {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Coming Soon Image */
+.coming-soon-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.coming-soon-image .portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    /* Blur + dark effect */
+    filter: blur(3px) brightness(0.55);
+    transform: scale(1.04);
+}
+
+/* Dark overlay */
+.coming-soon-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Coming Soon Badge */
+.coming-soon-overlay span {
+    display: inline-block;
+
+    padding: 10px 28px;
+
+    border: 1px solid #ff3b3b;
+    border-radius: 6px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    color: #ff4444;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    box-shadow: 0 0 20px rgba(255, 50, 50, 0.25);
+
+    transform: rotate(-5deg);
+}
+
+/* Disable button look */
+.coming-soon-card button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Optional hover */
+.coming-soon-card:hover .portfolio-img {
+    filter: blur(2px) brightness(0.6);
+}
+
+/*  */
+.portfolio-img-wrapper {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 18px 18px 0px 0px;
+    background: transparent;
+}
+
+.portfolio-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 18px;
+}
+
+
+/* Desktop */
+.coming-soon-image {
+    position: relative;
+    overflow: hidden !important;
+    border-radius: 18px 18px 0 0 !important;
+}
+
+.coming-soon-image .portfolio-img {
+    border-radius: 18px 18px 0 0 !important;
+}
+
+.coming-soon-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px 18px 0 0 !important;
+    overflow: hidden;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .coming-soon-image {
+        border-radius: 18px !important;
+    }
+
+    .coming-soon-image .portfolio-img {
+        border-radius: 18px !important;
+    }
+
+    .coming-soon-overlay {
+        border-radius: 18px !important;
+    }
+
+}
+
+/* Product Modal CSS */
+.enterprise-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.enterprise-feature i {
+    width: 22px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.enterprise-feature strong {
+    font-size: 14px;
+}
+
+.enterprise-feature small {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.enterprise-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #aaa;
+    font-size: 11px;
+}
+
+@media (max-width: 576px) {
+    .modal-content.glass-card {
+        padding: 20px !important;
+    }
+
+    .enterprise-feature {
+        padding: 12px;
+    }
+
+    .enterprise-tag {
+        font-size: 10px;
+    }
 }
