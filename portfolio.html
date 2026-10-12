@@ -3,23 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Portfolio | Crosonic Technologies - Our Featured Projects & Case Studies</title>
+    <title>Portfolio | GlobalX Technologies - Our Featured Projects & Case Studies</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta
         content="software projects Pune, ERP system portfolio, e-commerce websites, CRM application, college projects, hospital software, billing software"
         name="keywords">
     <meta
-        content="Explore the portfolio of Crosonic Technologies. Browse our custom billing systems, college ERP portals, responsive e-commerce web applications, and academic student projects."
+        content="Explore the portfolio of GlobalX Technologies. Browse our custom billing systems, college ERP portals, responsive e-commerce web applications, and academic student projects."
         name="description">
 
-    <!-- Favicon -->
-    <link href="img/icon.png" rel="icon">
+    <!-- Favicon / Brand Icon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icon.png?v=5.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png?v=5.0">
+    <link rel="shortcut icon" type="image/png" href="img/icon.png?v=5.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icon.png?v=5.0">
 
-    <!-- Google Web Fonts -->
+        <!-- Google Web Fonts (Inter & Geist Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -33,7 +35,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Premium Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=3.2" rel="stylesheet">
 </head>
 
 <body>
@@ -53,76 +55,140 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <a href="index.html" class="navbar-brand p-0">
-                <img src="img/logo-trans.png" alt="CROSONIC Technologies" class="navbar-logo">
-            </a>
-
-            <div class="d-flex align-items-center ms-auto d-lg-none">
-                <a href="contact.html" class="consultation-icon me-3">
-                    <i class="bi bi-headset"></i>
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+            <div class="container">
+                <a href="index.html" class="navbar-brand p-0">
+                    <img src="img/logo-trans.png?v=4.0" alt="GlobalX" class="navbar-logo">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                </button>
-            </div>
 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <!-- <a href="index.html" class="nav-item nav-link active">HOME</a> -->
-                    <a href="about.html" class="nav-item nav-link">ABOUT</a>
-                    <a href="service.html" class="nav-item nav-link">SERVICES</a>
-                    <a href="portfolio.html" class="nav-item nav-link active">PRODUCTS</a>
-                    <!-- <a href="student-projects.html" class="nav-item nav-link">STUDENT PROJECTS</a> -->
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            COMPANY
-                        </a>
+                <div class="d-flex align-items-center ms-auto d-lg-none">
+                    <a href="contact.html" class="consultation-icon me-3">
+                        <i class="bi bi-headset"></i>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                </div>
 
-                        <div class="dropdown-menu m-0">
-
-                            <a href="technologies.html" class="dropdown-item">Technologies</a>
-                            <a href="pricing.html" class="dropdown-item">Pricing</a>
-                            <a href="testimonials.html" class="dropdown-item">Testimonials</a>
-                            <a href="careers.html" class="dropdown-item">Careers</a>
-                            <div class="dropdown-divider"></div>
-
-                            <div class="dropdown-submenu">
-                                <a href="#" class="dropdown-item submenu-toggle">
-                                    <span>Legal</span>
-                                    <i class="fas fa-chevron-right"></i>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="about.html" class="nav-item nav-link">ABOUT</a>
+                        <a href="service.html" class="nav-item nav-link">SERVICES</a>
+                        
+                        <!-- PRODUCTS Dropdown with Filters -->
+                        <div class="nav-item dropdown">
+                            <a href="portfolio.html" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
+                                PRODUCTS
+                            </a>
+                            <div class="dropdown-menu m-0">
+                                <a href="portfolio.html" class="dropdown-item active" data-filter="all">
+                                    <span>All Products</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                                 </a>
+                                <a href="portfolio.html?filter=student" class="dropdown-item" data-filter="student">
+                                    <span>Student Projects</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="portfolio.html?filter=web" class="dropdown-item" data-filter="web">
+                                    <span>Business Websites</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="portfolio.html?filter=e-commerce" class="dropdown-item" data-filter="e-commerce">
+                                    <span>E-Commerce</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="portfolio.html?filter=mobile-app" class="dropdown-item" data-filter="mobile-app">
+                                    <span>Mobile Apps</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="portfolio.html?filter=software" class="dropdown-item" data-filter="software">
+                                    <span>Enterprise Software</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="portfolio.html?filter=saas" class="dropdown-item" data-filter="saas">
+                                    <span>SaaS Products</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                            </div>
+                        </div>
 
-                                <div class="dropdown-menu submenu">
-                                    <a href="privacy-policy.html" class="dropdown-item">Privacy Policy</a>
-                                    <a href="terms-conditions.html" class="dropdown-item">Terms & Conditions</a>
-                                    <a href="disclaimer.html" class="dropdown-item">Disclaimer</a>
+                        <!-- COMPANY Dropdown -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                COMPANY
+                            </a>
+                            <div class="dropdown-menu m-0">
+                                <a href="technologies.html" class="dropdown-item">
+                                    <span>Technologies</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="pricing.html" class="dropdown-item">
+                                    <span>Pricing</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="testimonials.html" class="dropdown-item">
+                                    <span>Testimonials</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="careers.html" class="dropdown-item">
+                                    <span>Careers</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-submenu">
+                                    <a href="#" class="dropdown-item submenu-toggle">
+                                        <span>Legal</span>
+                                        <i class="fas fa-chevron-right submenu-chevron"></i>
+                                    </a>
+                                    <div class="dropdown-menu submenu">
+                                        <a href="privacy-policy.html" class="dropdown-item">
+                                            <span>Privacy Policy</span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        </a>
+                                        <a href="terms-conditions.html" class="dropdown-item">
+                                            <span>Terms & Conditions</span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        </a>
+                                        <a href="disclaimer.html" class="dropdown-item">
+                                            <span>Disclaimer</span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Legal Dropdown - Mobile Only -->
-                    <div class="nav-item dropdown d-lg-none">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            LEGAL
-                        </a>
-
-                        <div class="dropdown-menu m-0">
-                            <a href="privacy-policy.html" class="dropdown-item">Privacy Policy</a>
-                            <a href="terms-conditions.html" class="dropdown-item">Terms & Conditions</a>
-                            <a href="disclaimer.html" class="dropdown-item">Disclaimer</a>
+                        <!-- Legal Dropdown - Mobile Only -->
+                        <div class="nav-item dropdown d-lg-none">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                LEGAL
+                            </a>
+                            <div class="dropdown-menu m-0">
+                                <a href="privacy-policy.html" class="dropdown-item">
+                                    <span>Privacy Policy</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="terms-conditions.html" class="dropdown-item">
+                                    <span>Terms & Conditions</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                                <a href="disclaimer.html" class="dropdown-item">
+                                    <span>Disclaimer</span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">CONTACT</a>
-                </div>
-                <!-- Desktop -->
-                <a href="contact.html" class="btn btn-gradient consultation-btn ms-3 d-none d-lg-inline-flex">
-                    <i class="bi bi-headset"></i>
-                    <span>Get Consultation</span>
-                </a>
 
+                        <a href="contact.html" class="nav-item nav-link">CONTACT</a>
+                    </div>
+                    <!-- Desktop -->
+                    <a href="contact.html" class="btn btn-gradient consultation-btn ms-3 d-none d-lg-inline-flex">
+                        <i class="bi bi-headset"></i>
+                        <span>Get Consultation</span>
+                    </a>
+
+                </div>
             </div>
         </nav>
         <!-- Navbar End -->
@@ -130,7 +196,7 @@
         <!-- Portfolio Section Start -->
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
-                <div class="section-header">
+                <div class="section-header" id="portfolioSectionHeader">
                     <span class="section-subtitle">Our Work</span>
                     <h2 class="section-main-title text-white">Showcasing Our <span class="gradient-text">Recent
                             Projects</span></h2>
@@ -138,888 +204,496 @@
                         corporate organizations, and educational institutes.</p>
                 </div>
 
-                <!-- Filter Buttons -->
-                <div class="row g-2 justify-content-center mb-5 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="col-auto">
-                        <button class="portfolio-filter-btn active" data-filter="all">All</button>
-                        <button class="portfolio-filter-btn" data-filter="student">Student Projects</button>
-                        <button class="portfolio-filter-btn" data-filter="web">Business Websites</button>
-                        <button class="portfolio-filter-btn" data-filter="e-commerce">E-Commerce</button>
-                        <button class="portfolio-filter-btn" data-filter="mobile-app">Mobile Apps</button>
-                        <button class="portfolio-filter-btn" data-filter="software">Enterprise Software</button>
-                        <button class="portfolio-filter-btn" data-filter="saas">SaaS Products</button>
-                    </div>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="row g-4 portfolio-container">
-                    <!-- 1. Custom Enterprise Software -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="software"
-                        data-wow-delay="0.1s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/enterprise-software.webp" alt="Custom Enterprise Software"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">Java</span>
-                                <span class="tag-badge">Spring Boot</span>
-                                <span class="tag-badge">MySQL</span>
-                                <h3 class="text-white h5 mt-2">Custom Enterprise Software</h3>
-                                <p class="small text-muted">Custom enterprise solutions built around your business
-                                    needs, including CRM, Inventory, College ERP, HRMS, and workflow automation.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal1">View Details</button>
-                            </div>
+                <!-- In-Depth Project Detail View (Flipkart-Style Product Page, No Modal) -->
+                <div id="portfolioDetailView" class="fk-product-page mb-5" style="display: none;">
+                    
+                    <!-- Top Breadcrumb & Navigation Bar -->
+                    <div class="fk-top-bar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <button type="button" class="fk-back-btn" id="backToProjectsBtn" onclick="closeProjectDetail()">
+                                <i class="fas fa-arrow-left me-2"></i> Back to Projects
+                            </button>
+                            <nav class="fk-breadcrumb d-none d-md-flex align-items-center" aria-label="breadcrumb">
+                                <a href="index.html">Home</a>
+                                <span class="fk-bc-separator">/</span>
+                                <a href="portfolio.html" onclick="closeProjectDetail(); return false;">Portfolio</a>
+                                <span class="fk-bc-separator">/</span>
+                                <span class="fk-bc-category" id="detailBreadcrumbCategory">Enterprise Solutions</span>
+                                <span class="fk-bc-separator">/</span>
+                                <span class="fk-bc-current" id="detailBreadcrumbTitle">Custom Enterprise Software</span>
+                            </nav>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="fk-assured-badge">
+                                <i class="fas fa-certificate text-primary me-1"></i> GlobalX Verified
+                            </span>
                         </div>
                     </div>
 
-                    <!-- 2. E-Commerce Shop -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce"
-                        data-wow-delay="0.2s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/e-commerce.webp" alt="E-Commerce Shop" class="portfolio-img">
+                    <!-- Main Flipkart 2-Column Product Layout -->
+                    <div class="row g-4 g-xl-5 align-items-start">
+                        
+                        <!-- Left Column: Sticky Showcase & Dual Action Buttons (5 cols) -->
+                        <div class="col-lg-5 col-xl-5 col-md-5 fk-sticky-col">
+                            <div class="fk-product-gallery-card">
+                                <!-- Main Showcase Frame -->
+                                <div class="fk-image-frame">
+                                    <img id="detailPosterImg" src="img/products/enterprise-software.webp" alt="Project Showcase" class="img-fluid w-100 fk-main-img">
+                                    <div class="fk-img-badge-overlay">
+                                        <span class="fk-badge-pill" id="detailBadgeType"><i class="fas fa-bolt text-warning me-1"></i> Enterprise Grade</span>
+                                    </div>
+                                </div>
+
+                                <!-- Thumbnail Highlights Strip -->
+                                <div class="fk-thumb-strip d-flex gap-2 mt-3" id="detailThumbStrip">
+                                    <div class="fk-thumb-item active" title="System Interface">
+                                        <i class="fas fa-desktop"></i>
+                                        <span>Interface</span>
+                                    </div>
+                                    <div class="fk-thumb-item" title="Tech Architecture">
+                                        <i class="fas fa-layer-group"></i>
+                                        <span>Architecture</span>
+                                    </div>
+                                    <div class="fk-thumb-item" title="Database & Security">
+                                        <i class="fas fa-shield-halved"></i>
+                                        <span>Security</span>
+                                    </div>
+                                    <div class="fk-thumb-item" title="Cloud DevOps">
+                                        <i class="fas fa-cloud"></i>
+                                        <span>DevOps</span>
+                                    </div>
+                                </div>
+
+                                <!-- Flipkart Iconic Dual Action Buttons (Under Showcase) -->
+                                <div class="fk-action-buttons-grid mt-4">
+                                    <a href="contact.html" id="detailPrimaryCta" class="fk-btn-primary">
+                                        <i class="fas fa-bolt"></i>
+                                        <span id="detailPrimaryCtaText">REQUEST CUSTOM PROPOSAL</span>
+                                    </a>
+                                    <a href="https://wa.me/919272399002" target="_blank" id="detailWhatsappCta" class="fk-btn-whatsapp">
+                                        <i class="fab fa-whatsapp"></i>
+                                        <span>WHATSAPP INQUIRY</span>
+                                    </a>
+                                </div>
+
+                                <!-- Trust Guarantees Panel -->
+                                <div class="fk-trust-panel mt-4">
+                                    <div class="fk-trust-item">
+                                        <i class="fas fa-shield-check text-primary"></i>
+                                        <div>
+                                            <strong>1-Year SLA Maintenance</strong>
+                                            <small>Monitoring, performance tuning & bug fixes included</small>
+                                        </div>
+                                    </div>
+                                    <div class="fk-trust-item">
+                                        <i class="fas fa-code text-primary"></i>
+                                        <div>
+                                            <strong>100% Full Source Code Ownership</strong>
+                                            <small>Zero lock-in, client owns private Git repository</small>
+                                        </div>
+                                    </div>
+                                    <div class="fk-trust-item">
+                                        <i class="fas fa-cloud-arrow-up text-primary"></i>
+                                        <div>
+                                            <strong>Turnkey Cloud Deployment</strong>
+                                            <small>Zero-downtime setup on AWS, GCP, or private VPS</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">Spring Boot</span>
-                                <span class="tag-badge">React</span>
-                                <span class="tag-badge">PostgreSQL</span>
-                                <h3 class="text-white h5 mt-2">E-Commerce Shop</h3>
-                                <p class="small text-muted">Modern online store with product management, secure
-                                    checkout, orders, payments, and customer management.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal2">View Details</button>
-                            </div>
                         </div>
-                    </div>
 
-                    <!-- 3. Advertising Website -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
-                        data-wow-delay="0.3s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/advertising.webp" alt="Advertising Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">Next.js</span>
-                                <span class="tag-badge">Vue.js</span>
-                                <span class="tag-badge">JavaScript</span>
-                                <h3 class="text-white h5 mt-2">Advertising Website</h3>
-                                <p class="small text-muted">High-converting advertising website designed to showcase
-                                    services, campaigns, offers, and customer enquiries.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal3">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 4. Portfolio Website -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
-                        data-wow-delay="0.4s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <img src="img/products/portfolio.webp" alt="Resume Portfolio Website"
-                                    class="portfolio-img">
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">HTML5</span>
-                                <span class="tag-badge">CSS3</span>
-                                <span class="tag-badge">JavaScript</span>
-                                <h3 class="text-white h5 mt-2">Resume Portfolio Website</h3>
-                                <p class="small text-muted">Interactive user portfolio featuring smooth layouts, scroll
-                                    transitions, and direct contact widgets.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal4">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 5. Business Website -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
-                        data-wow-delay="0.5s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/corporate-website.webp" alt="Corporate Business Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">React.js</span>
-                                <span class="tag-badge">Bootstrap</span>
-                                <span class="tag-badge">Figma</span>
-                                <h3 class="text-white h5 mt-2">Corporate Business Website</h3>
-                                <p class="small text-muted">Premium responsive website built to strengthen brand presence, showcase services, and generate business enquiries.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal5">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 6. Premium Black Theme Shop -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce"
-                        data-wow-delay="0.6s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/black-ecommerce.webp" alt="Corporate Business Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">React.js</span>
-                                <span class="tag-badge">Tailwind CSS</span>
-                                <span class="tag-badge">Node.js</span>
-                                <h3 class="text-white h5 mt-2">Premium Black Theme Shop</h3>
-                                <p class="small text-muted">A modern e-commerce platform with a sleek black theme,
-                                    featuring product listings, cart, and checkout.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal6">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 7. Car Wash System Pro -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student"
-                        data-wow-delay="0.7s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/carwash.webp" alt="Corporate Business Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">PHP</span>
-                                <span class="tag-badge">XAMPP</span>
-                                <span class="tag-badge">MongoDB</span>
-                                <h3 class="text-white h5 mt-2">Car Wash System Pro</h3>
-                                <p class="small text-muted">Track warehouses, product status, order fulfillments, and
-                                    purchase orders in real-time with premium user interface.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal7">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 8. The Gym Manager -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student"
-                        data-wow-delay="0.8s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/gym.webp" alt="Corporate Business Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">PHP</span>
-                                <span class="tag-badge">JavaScript</span>
-                                <span class="tag-badge">MySQL</span>
-                                <h3 class="text-white h5 mt-2">The Gym Manager</h3>
-                                <p class="small text-muted">A modern client relations application with visual pipeline
-                                    analytics, support tickets, and sales reports.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal8">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 9. Mobile Apps -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="mobile-app"
-                        data-wow-delay="0.9s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/mobile-app.webp" alt="Corporate Business Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">Kotlin</span>
-                                <span class="tag-badge">Flutter</span>
-                                <span class="tag-badge">Swift</span>
-                                <h3 class="text-white h5 mt-2">Customize Mobile Apps</h3>
-                                <p class="small text-muted">Employee attendance logs, salary slips auto-generation, and
-                                    leave request management dashboards.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal9">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 10. Tourism Booking System -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student"
-                        data-wow-delay="1.0s">
-                        <div class="glass-card portfolio-card">
-                            <div class="portfolio-img-wrapper">
-                                <div class="portfolio-img-wrapper">
-                                    <img src="img/products/tourism.webp" alt="Resume Portfolio Website"
-                                        class="portfolio-img">
-                                </div>
-                            </div>
-                            <div class="portfolio-content">
-                                <span class="tag-badge">Java/React</span>
-                                <span class="tag-badge">Node/MySQL</span>
-                                <span class="tag-badge">Documentation</span>
-                                <h3 class="text-white h5 mt-2">Tourism Booking System</h3>
-                                <p class="small text-muted">Academic projects designed for BCA/MCA graduates including
-                                    complete code, report, and deployment support.</p>
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#projectModal10">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 11. Advance Billing SaaS -->
-                    <div class="col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="saas"
-                        data-wow-delay="1.0s">
-
-                        <div class="glass-card portfolio-card coming-soon-card">
-
-                            <!-- Image -->
-                            <div class="portfolio-img-wrapper coming-soon-image">
-                                <img src="img/products/billing-saas.webp" alt="Advance Billing SaaS Application"
-                                    class="portfolio-img">
-
-                                <!-- Overlay -->
-                                <div class="coming-soon-overlay">
-                                    <span>COMING SOON</span>
+                        <!-- Right Column: Product Details & Flipkart Specifications Table (7 cols) -->
+                        <div class="col-lg-7 col-xl-7 col-md-7 fk-details-col">
+                            
+                            <!-- Category & Title -->
+                            <div class="fk-header-section mb-3">
+                                <span class="fk-category-tag" id="detailCategoryBadge">ENTERPRISE SOLUTIONS</span>
+                                <h1 class="fk-product-title mt-2 mb-2" id="detailTitle">Custom Enterprise Software</h1>
+                                
+                                <!-- Rating Strip (Flipkart style) -->
+                                <div class="fk-ratings-strip d-flex flex-wrap align-items-center gap-3">
+                                    <span class="fk-rating-badge" id="detailRatingBadge">
+                                        4.9 <i class="fas fa-star ms-1"></i>
+                                    </span>
+                                    <span class="fk-ratings-count" id="detailRatingsCount">
+                                        142 Ratings & 38 Case Studies
+                                    </span>
+                                    <span class="fk-verified-tag">
+                                        <i class="fas fa-circle-check text-primary"></i> GlobalX Verified
+                                    </span>
                                 </div>
                             </div>
 
-                            <div class="portfolio-content">
-
-                                <span class="tag-badge">Java/Node</span>
-                                <span class="tag-badge">React/Next</span>
-                                <span class="tag-badge">Vanilla JS</span>
-
-                                <h3 class="text-white h5 mt-2">
-                                    Advance Billing SaaS Application
-                                </h3>
-
-                                <p class="small text-muted">
-                                    Advanced billing, invoicing, customer management,
-                                    inventory, payments and business analytics in one platform.
-                                </p>
-
-                                <button type="button" class="btn btn-gradient btn-sm mt-3 w-100" disabled>
-                                    Coming Soon
-                                </button>
-
+                            <!-- Delivery & Deployment Bar -->
+                            <div class="fk-delivery-box mb-4">
+                                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                                    <div>
+                                        <span class="fk-price-tag">Bespoke Software Engineering</span>
+                                        <div class="fk-delivery-estimate mt-1">
+                                            <i class="fas fa-truck-fast text-primary me-2"></i>
+                                            Estimated Deployment: <strong class="text-white" id="detailTimeline">7 – 14 Business Days</strong>
+                                        </div>
+                                    </div>
+                                    <div class="fk-deployment-chip">
+                                        <i class="fas fa-server me-1"></i> <span id="detailDeploymentMode">Cloud / Docker / On-Prem</span>
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- Flipkart Style "Available Offers" Section -->
+                            <div class="fk-offers-box mb-4">
+                                <h6 class="fk-offers-heading"><i class="fas fa-tag text-primary me-2"></i> Included Inclusions & Guarantees</h6>
+                                <ul class="fk-offers-list">
+                                    <li>
+                                        <span class="fk-offer-tag">Custom Tailored</span>
+                                        <strong>Bespoke Architecture:</strong> Engineered exclusively to your operational workflows and data models.
+                                    </li>
+                                    <li>
+                                        <span class="fk-offer-tag">Free Setup</span>
+                                        <strong>Cloud Infrastructure:</strong> Production server setup, SSL encryption, and CI/CD automation included.
+                                    </li>
+                                    <li>
+                                        <span class="fk-offer-tag">Security</span>
+                                        <strong>Hardened Security:</strong> OWASP Top 10 compliance, encrypted databases, and role-based access control.
+                                    </li>
+                                    <li>
+                                        <span class="fk-offer-tag">Support</span>
+                                        <strong>365 Days Warranty:</strong> Dedicated tech support, performance optimizations, and security patches.
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Solution Overview -->
+                            <div class="fk-desc-box mb-4">
+                                <h5 class="fk-section-title">Solution Overview</h5>
+                                <p class="fk-desc-text" id="detailDesc"></p>
+                                <div class="fk-tech-pills d-flex flex-wrap gap-2 mt-3" id="detailTechTags"></div>
+                            </div>
+
+                            <!-- Technical Specifications Table (Iconic Flipkart 2-Column Table) -->
+                            <div class="fk-specs-section mb-4">
+                                <h5 class="fk-section-title">Technical Specifications</h5>
+                                
+                                <div class="fk-specs-table-wrapper">
+                                    <div class="fk-specs-group">
+                                        <div class="fk-specs-group-title">General Information</div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Solution Type</div>
+                                            <div class="fk-spec-val" id="specSolutionType">Full-Stack Enterprise ERP</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Suitable For</div>
+                                            <div class="fk-spec-val" id="specSuitableFor">Enterprises, Large Teams & Institutions</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Code Ownership</div>
+                                            <div class="fk-spec-val" id="specOwnership">100% Full Source Code & IP Handover</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Delivery Timeline</div>
+                                            <div class="fk-spec-val" id="specDelivery">7 – 14 Business Days</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fk-specs-group">
+                                        <div class="fk-specs-group-title">Architecture & Tech Stack</div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Frontend Framework</div>
+                                            <div class="fk-spec-val" id="specFrontend">React.js, Next.js, Modern CSS3</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Backend Runtime</div>
+                                            <div class="fk-spec-val" id="specBackend">Spring Boot / Java / Node.js</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Database & Cache</div>
+                                            <div class="fk-spec-val" id="specDatabase">PostgreSQL, MySQL, Redis Cache</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Cloud Infrastructure</div>
+                                            <div class="fk-spec-val" id="specCloud">AWS EC2 / S3 / Docker Containers</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="fk-specs-group">
+                                        <div class="fk-specs-group-title">Security & Performance SLAs</div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Authentication</div>
+                                            <div class="fk-spec-val" id="specAuth">JWT, OAuth2, Role-Based Access Control (RBAC)</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Data Encryption</div>
+                                            <div class="fk-spec-val" id="specEncryption">AES-256 Storage & TLS 1.3 Transport Encryption</div>
+                                        </div>
+                                        <div class="fk-specs-row">
+                                            <div class="fk-spec-key">Latency & SLA</div>
+                                            <div class="fk-spec-val" id="specLatency">Sub-150ms Response Time, 99.9% Uptime Guarantee</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Core Modules Grid -->
+                            <div class="fk-modules-section mb-4">
+                                <h5 class="fk-section-title" id="detailFeaturesTitle">
+                                    <i class="fas fa-layer-group text-primary me-2"></i> Core System Modules
+                                </h5>
+                                <div class="row g-3" id="detailFeaturesGrid">
+                                    <!-- Injected dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Deliverables ("In The Box") Package -->
+                            <div class="fk-box-deliverables p-4 rounded-4 mb-4">
+                                <h6 class="text-white mb-3"><i class="fas fa-box-open text-primary me-2"></i> Deliverables Package ("In The Box")</h6>
+                                <div class="row g-2" id="detailDeliverablesList">
+                                    <!-- Injected dynamically -->
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
-                <!-- Load More Button -->
-                <div class="text-center">
-                    <button id="loadMoreBtn" class="load-more-btn  btn-gradient">Load More</button>
+                <!-- Portfolio Listing View -->
+                <div id="portfolioListingView">
+                    <!-- Filter Buttons -->
+                    <div class="row g-2 justify-content-center mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="col-auto">
+                            <button class="portfolio-filter-btn active" data-filter="all">All</button>
+                            <button class="portfolio-filter-btn" data-filter="student">Student Projects</button>
+                            <button class="portfolio-filter-btn" data-filter="web">Business Websites</button>
+                            <button class="portfolio-filter-btn" data-filter="e-commerce">E-Commerce</button>
+                            <button class="portfolio-filter-btn" data-filter="mobile-app">Mobile Apps</button>
+                            <button class="portfolio-filter-btn" data-filter="software">Enterprise Software</button>
+                            <button class="portfolio-filter-btn" data-filter="saas">SaaS Products</button>
+                        </div>
+                    </div>
+
+                    <!-- Projects Grid (xAI-style Compact Cards) -->
+                    <div class="row g-4 portfolio-container">
+                        <!-- 1. Custom Enterprise Software -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="software" data-wow-delay="0.1s" data-project-id="1">
+                            <div class="xai-project-card" onclick="openProjectDetail(1)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/enterprise-software.webp" alt="Custom Enterprise Software" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Enterprise Software</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">Java / Spring Boot</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Custom Enterprise Software <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. E-Commerce Shop -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce" data-wow-delay="0.2s" data-project-id="2">
+                            <div class="xai-project-card" onclick="openProjectDetail(2)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/e-commerce.webp" alt="E-Commerce Shop" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">E-Commerce</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">Spring Boot & React</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        E-Commerce Shop <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Advertising Website -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.3s" data-project-id="3">
+                            <div class="xai-project-card" onclick="openProjectDetail(3)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/advertising.webp" alt="Advertising Website" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Business Website</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">Next.js & Vue</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Advertising Website <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Resume Portfolio Website -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.4s" data-project-id="4">
+                            <div class="xai-project-card" onclick="openProjectDetail(4)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/portfolio.webp" alt="Resume Portfolio Website" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Personal Branding</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">HTML5 & Bootstrap</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Resume Portfolio Website <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Corporate Business Website -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.5s" data-project-id="5">
+                            <div class="xai-project-card" onclick="openProjectDetail(5)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/corporate-website.webp" alt="Corporate Business Website" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Corporate</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">React & Figma</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Corporate Business Website <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6. Premium Black Theme Shop -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce" data-wow-delay="0.6s" data-project-id="6">
+                            <div class="xai-project-card" onclick="openProjectDetail(6)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/black-ecommerce.webp" alt="Premium Black Theme Shop" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Luxury E-Commerce</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">React & Tailwind</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Premium Black Theme Shop <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7. Car Wash System Pro -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="0.7s" data-project-id="7">
+                            <div class="xai-project-card" onclick="openProjectDetail(7)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/carwash.webp" alt="Car Wash System Pro" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Business Software</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">PHP & MySQL</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Car Wash System Pro <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8. The Gym Manager -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="0.8s" data-project-id="8">
+                            <div class="xai-project-card" onclick="openProjectDetail(8)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/gym.webp" alt="The Gym Manager" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Fitness Tech</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">PHP & PostgreSQL</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        The Gym Manager <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 9. Customize Mobile Apps -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="mobile-app" data-wow-delay="0.9s" data-project-id="9">
+                            <div class="xai-project-card" onclick="openProjectDetail(9)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/mobile-app.webp" alt="Customize Mobile Apps" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Mobile Applications</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">Flutter & Kotlin</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Customize Mobile Apps <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 10. Tourism Booking System -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="1.0s" data-project-id="10">
+                            <div class="xai-project-card" onclick="openProjectDetail(10)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/tourism.webp" alt="Tourism Booking System" class="xai-project-img" loading="lazy">
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">Travel & Tourism</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">Node.js & React</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Tourism Booking System <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 11. Advance Billing SaaS -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="saas" data-wow-delay="1.0s" data-project-id="11">
+                            <div class="xai-project-card" onclick="openProjectDetail(11)">
+                                <div class="xai-project-poster">
+                                    <img src="img/products/billing-saas.webp" alt="Advance Billing SaaS Application" class="xai-project-img" loading="lazy">
+                                    <span class="xai-coming-soon-badge">Coming Soon</span>
+                                </div>
+                                <div class="xai-project-info">
+                                    <div class="xai-project-meta">
+                                        <span class="meta-tag">SaaS Product</span>
+                                        <span class="meta-dot">·</span>
+                                        <span class="meta-tech">React & Next.js</span>
+                                    </div>
+                                    <h3 class="xai-project-title">
+                                        Advance Billing SaaS <span class="xai-title-arrow">›</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center mt-5">
+                        <button id="loadMoreBtn" class="load-more-btn btn-gradient">Load More</button>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Portfolio Section End -->
 
-        <!-- Modals (1 to 10) -->
-        <!-- =========================
-     PRODUCT MODALS
-========================= -->
 
-<!-- Modal 1: Custom Enterprise Software -->
-<div class="modal fade" id="projectModal1" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">ENTERPRISE SOLUTIONS</span>
-                    <h4 class="modal-title text-white mt-1">Custom Enterprise Software</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    Custom enterprise software built around your business requirements
-                    to streamline operations, automate workflows, manage data, and
-                    improve business decision-making.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-layer-group text-primary me-2"></i>
-                    Solutions We Build
-                </h6>
-
-                <div class="row g-2 mb-4">
-                    <div class="col-md-6">
-                        <div class="enterprise-feature">
-                            <i class="fas fa-users text-primary"></i>
-                            <div>
-                                <strong class="text-white">CRM Software</strong>
-                                <small class="text-muted d-block">
-                                    Customers, leads, sales and follow-ups
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="enterprise-feature">
-                            <i class="fas fa-boxes-stacked text-primary"></i>
-                            <div>
-                                <strong class="text-white">Inventory Software</strong>
-                                <small class="text-muted d-block">
-                                    Stock, products, purchases and reports
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="enterprise-feature">
-                            <i class="fas fa-graduation-cap text-primary"></i>
-                            <div>
-                                <strong class="text-white">College ERP</strong>
-                                <small class="text-muted d-block">
-                                    Students, fees, attendance and academics
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="enterprise-feature">
-                            <i class="fas fa-user-tie text-primary"></i>
-                            <div>
-                                <strong class="text-white">HRMS</strong>
-                                <small class="text-muted d-block">
-                                    Employees, attendance, leave and payroll
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        Java, Spring Boot, React, Node.js, MySQL, PostgreSQL
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Discuss Your Requirements
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 2: E-Commerce -->
-<div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">E-COMMERCE</span>
-                    <h4 class="modal-title text-white mt-1">E-Commerce Shop</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A modern e-commerce platform designed to help businesses
-                    showcase products, manage orders, handle customers, and
-                    deliver a seamless online shopping experience.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-cart-shopping text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Product Management</span>
-                    <span class="enterprise-tag">Shopping Cart</span>
-                    <span class="enterprise-tag">Online Payments</span>
-                    <span class="enterprise-tag">Order Management</span>
-                    <span class="enterprise-tag">Customer Accounts</span>
-                    <span class="enterprise-tag">Admin Dashboard</span>
-                    <span class="enterprise-tag">Responsive Design</span>
-                    <span class="enterprise-tag">Order Tracking</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        React, Spring Boot, PostgreSQL
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Request E-Commerce Solution
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 3: Advertising Website -->
-<div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">BUSINESS WEBSITE</span>
-                    <h4 class="modal-title text-white mt-1">Advertising Website</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A modern advertising and promotional website designed to
-                    showcase services, campaigns, offers, products, and
-                    generate customer enquiries.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-bullhorn text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Campaign Showcase</span>
-                    <span class="enterprise-tag">Service Sections</span>
-                    <span class="enterprise-tag">Lead Forms</span>
-                    <span class="enterprise-tag">Offers & Promotions</span>
-                    <span class="enterprise-tag">WhatsApp Integration</span>
-                    <span class="enterprise-tag">Responsive Design</span>
-                    <span class="enterprise-tag">SEO Ready</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        HTML5, CSS3, JavaScript, Next.js, Vue.js
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Build Your Business Website
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 4: Portfolio Website -->
-<div class="modal fade" id="projectModal4" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">PERSONAL BRANDING</span>
-                    <h4 class="modal-title text-white mt-1">Resume Portfolio Website</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A modern professional portfolio website designed to present
-                    your profile, skills, experience, projects, achievements,
-                    and contact information in a premium digital format.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-user-tie text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">About & Profile</span>
-                    <span class="enterprise-tag">Skills Showcase</span>
-                    <span class="enterprise-tag">Project Portfolio</span>
-                    <span class="enterprise-tag">Experience Timeline</span>
-                    <span class="enterprise-tag">Contact Form</span>
-                    <span class="enterprise-tag">Social Links</span>
-                    <span class="enterprise-tag">Responsive Design</span>
-                    <span class="enterprise-tag">SEO Ready</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        HTML5, CSS3, JavaScript, Bootstrap
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Build Your Portfolio
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 5: Corporate Business Website -->
-<div class="modal fade" id="projectModal5" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">BUSINESS WEBSITE</span>
-                    <h4 class="modal-title text-white mt-1">Corporate Business Website</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A premium corporate website built to establish a strong
-                    digital presence, communicate your services, showcase
-                    your brand, and generate business enquiries.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-building text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Corporate Branding</span>
-                    <span class="enterprise-tag">Service Showcase</span>
-                    <span class="enterprise-tag">Lead Generation</span>
-                    <span class="enterprise-tag">Contact Forms</span>
-                    <span class="enterprise-tag">WhatsApp Integration</span>
-                    <span class="enterprise-tag">Google Maps</span>
-                    <span class="enterprise-tag">SEO Ready</span>
-                    <span class="enterprise-tag">Mobile Responsive</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        React, Bootstrap, Figma
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Request Business Website
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 6: Premium Black Theme Shop -->
-<div class="modal fade" id="projectModal6" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">E-COMMERCE</span>
-                    <h4 class="modal-title text-white mt-1">Premium Black Theme Shop</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A premium dark-themed online storefront focused on modern
-                    product presentation, smooth browsing, responsive layouts,
-                    and a high-end shopping experience.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-store text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Premium Dark UI</span>
-                    <span class="enterprise-tag">Product Showcase</span>
-                    <span class="enterprise-tag">Product Categories</span>
-                    <span class="enterprise-tag">Shopping Experience</span>
-                    <span class="enterprise-tag">Responsive Layout</span>
-                    <span class="enterprise-tag">Modern Navigation</span>
-                    <span class="enterprise-tag">Customer Enquiry</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        Node.js, React.js, CSS3, JavaScript, Tailwind CSS, Materialize CSS
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Build Your Online Store
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 7: Car Wash System -->
-<div class="modal fade" id="projectModal7" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">BUSINESS SOFTWARE</span>
-                    <h4 class="modal-title text-white mt-1">Car Wash System Pro</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A complete car wash business solution designed to manage
-                    bookings, services, customers, staff, payments, and daily
-                    operations from one centralized platform.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-car text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Online Bookings</span>
-                    <span class="enterprise-tag">Service Management</span>
-                    <span class="enterprise-tag">Customer Management</span>
-                    <span class="enterprise-tag">Staff Management</span>
-                    <span class="enterprise-tag">Billing & Payments</span>
-                    <span class="enterprise-tag">Business Reports</span>
-                    <span class="enterprise-tag">Dashboard</span>
-                    <span class="enterprise-tag">Notifications</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        PHP, XAMPP, MongoDB/MySQL, JavaScript
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Request Car Wash Solution
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 8: Gym Manager -->
-<div class="modal fade" id="projectModal8" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">BUSINESS SOFTWARE</span>
-                    <h4 class="modal-title text-white mt-1">The Gym Manager</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A modern gym management solution that helps fitness
-                    businesses manage members, memberships, attendance,
-                    trainers, billing, and operational performance.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-dumbbell text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Member Management</span>
-                    <span class="enterprise-tag">Membership Plans</span>
-                    <span class="enterprise-tag">Attendance</span>
-                    <span class="enterprise-tag">Trainer Management</span>
-                    <span class="enterprise-tag">Billing</span>
-                    <span class="enterprise-tag">Renewal Tracking</span>
-                    <span class="enterprise-tag">Reports & Analytics</span>
-                    <span class="enterprise-tag">Dashboard</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        PHP, JavaScript, PostgreSQL/MySQL
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Request Gym Software
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 9: Customize Mobile Apps -->
-<div class="modal fade" id="projectModal9" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">MOBILE APPLICATIONS</span>
-                    <h4 class="modal-title text-white mt-1">Customize Mobile Apps</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    Custom mobile applications designed around your business
-                    requirements, from customer-facing apps to internal
-                    business and service applications.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-mobile-screen-button text-primary me-2"></i>
-                    Application Capabilities
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Custom UI</span>
-                    <span class="enterprise-tag">User Authentication</span>
-                    <span class="enterprise-tag">Push Notifications</span>
-                    <span class="enterprise-tag">API Integration</span>
-                    <span class="enterprise-tag">Cloud Database</span>
-                    <span class="enterprise-tag">Payment Integration</span>
-                    <span class="enterprise-tag">Location Services</span>
-                    <span class="enterprise-tag">Admin Dashboard</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        Android, Kotlin, Firebase, REST APIs, Flutter, Swift
-                    </span>
-                </p>
-
-                <a href="https://wa.me/919657795194"
-                   target="_blank"
-                   class="btn btn-gradient btn-sm w-100">
-                    Discuss Your App Idea
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- Modal 10: Tourism Booking System -->
-<div class="modal fade" id="projectModal10" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-card p-4 text-start">
-
-            <div class="modal-header border-0 p-0 mb-3">
-                <div>
-                    <span class="text-primary small fw-semibold">TRAVEL & TOURISM</span>
-                    <h4 class="modal-title text-white mt-1">Tourism Booking System</h4>
-                </div>
-                <button type="button" class="btn-close btn-close-white"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body p-0">
-
-                <p class="text-muted mb-4">
-                    A digital tourism platform designed to simplify destination
-                    discovery, package management, customer bookings, payments,
-                    and travel operations.
-                </p>
-
-                <h6 class="text-white mb-3">
-                    <i class="fas fa-plane-departure text-primary me-2"></i>
-                    Key Features
-                </h6>
-
-                <div class="d-flex flex-wrap gap-2 mb-4">
-                    <span class="enterprise-tag">Destination Management</span>
-                    <span class="enterprise-tag">Tour Packages</span>
-                    <span class="enterprise-tag">Booking Management</span>
-                    <span class="enterprise-tag">Customer Management</span>
-                    <span class="enterprise-tag">Payment Integration</span>
-                    <span class="enterprise-tag">Booking Tracking</span>
-                    <span class="enterprise-tag">Admin Dashboard</span>
-                    <span class="enterprise-tag">Reports</span>
-                </div>
-
-                <p class="mb-4">
-                    <strong class="text-white">Technologies:</strong>
-                    <span class="text-muted">
-                        Java/Node.js, React.js, MySQL
-                    </span>
-                </p>
-
-                <a href="contact.html" class="btn btn-gradient btn-sm w-100">
-                    Build Your Tourism Platform
-                </a>
-
-            </div>
-        </div>
-    </div>
-</div>
 
         <!-- Footer Start -->
         <footer class="footer">
@@ -1027,15 +701,14 @@
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-logo mb-4 text-center text-md-start">
-                            <img src="img/logo-trans.png" alt="Crosonic Logo"
-                                class="footer-brand-logo mx-auto mx-md-0 d-block">
+                            <img src="img/logo-trans.png?v=4.0" alt="GlobalX Logo" class="footer-brand-logo mx-auto mx-md-0 d-block">
                         </div>
 
                         <p class="mb-4">Building digital solutions for tomorrow. We build secure, scalable, and modern
                             application software using modern frameworks.</p>
                         <div class="d-flex">
                             <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                            <a class="social-icon-btn" href="https://www.linkedin.com/company/crosonic-technologies/"
+                            <a class="social-icon-btn" href="https://www.linkedin.com/company/globalx-technologies/"
                                 target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                             <!-- <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-twitter"></i></a> -->
@@ -1081,8 +754,8 @@
 
                         <p class="small mb-2">
                             <i class="fa fa-envelope text-primary me-2"></i>
-                            <a href="mailto:crosonictechnologies@gmail.com">
-                                crosonictechnologies@gmail.com
+                            <a href="mailto:globalxtechnologies@gmail.com">
+                                globalxtechnologies@gmail.com
                             </a>
                         </p>
 
@@ -1096,7 +769,7 @@
 
                             <p class="small mb-0">
                                 <i class="fa fa-phone-alt text-primary me-2"></i>
-                                <a href="tel:+919657795194">+91 96577 95194</a>
+                                <a href="tel:+919272399002">+91 92723 99002</a>
                             </p>
                         </div>
 
@@ -1117,9 +790,9 @@
                 </div>
                 <div class="row mt-5 pt-4 border-top border-secondary-subtle justify-content-center text-center">
                     <div class="col-md-8">
-                        <p class="mb-0 small text-muted">&copy; 2026 Crosonic Technologies. All Rights Reserved.
+                        <p class="mb-0 small text-muted">&copy; 2026 GlobalX Technologies. All Rights Reserved.
                             Designed
-                            with ❤️ by Crosonic Team.</p>
+                            with ❤️ by GlobalX Team.</p>
                     </div>
                 </div>
             </div>
@@ -1128,7 +801,7 @@
 
         <!-- Floating Actions Widgets -->
         <div class="float-widgets">
-            <a href="https://wa.me/919657795194" target="_blank" class="whatsapp-widget" title="Chat on WhatsApp">
+            <a href="https://wa.me/919272399002" target="_blank" class="whatsapp-widget" title="Chat on WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
             <a href="#" class="back-to-top" title="Back to Top">
@@ -1146,7 +819,24 @@
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
         <!-- Custom Javascript -->
-        <script src="js/main.js"></script>
+        <script src="js/main.js?v=3.2"></script>
+
+        <!-- Direct Fail-Safe Portfolio Click & Hash Handler -->
+        <script>
+            (function () {
+                // Delegation fallback ensuring every click triggers the detail view
+                document.addEventListener('click', function (e) {
+                    const card = e.target.closest('.xai-project-card') || e.target.closest('.portfolio-item-wrapper');
+                    if (card && !card.closest('#portfolioDetailView')) {
+                        const id = card.getAttribute('data-project-id') || card.closest('.portfolio-item-wrapper')?.getAttribute('data-project-id');
+                        if (id && typeof window.openProjectDetail === 'function') {
+                            e.preventDefault();
+                            window.openProjectDetail(parseInt(id, 10));
+                        }
+                    }
+                }, true);
+            })();
+        </script>
 </body>
 
 </html>
