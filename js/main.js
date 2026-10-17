@@ -11,6 +11,20 @@
     };
     spinner();
 
+    // 1b. Automatic Dynamic Year Update (Updates 'Effective: YYYY', '.current-year', footer copyright, etc.)
+    const updateDynamicYear = function () {
+        const currentYear = new Date().getFullYear();
+        $('.current-year, [data-dynamic-year]').text(currentYear);
+
+        $('*').filter(function () {
+            return $(this).children().length === 0 && /Effective:\s*\d{4}/i.test($(this).text());
+        }).each(function () {
+            $(this).text($(this).text().replace(/Effective:\s*\d{4}/i, 'Effective: ' + currentYear));
+        });
+    };
+    updateDynamicYear();
+    $(document).ready(updateDynamicYear);
+
     // 2. Initiate WOW.js for animations
     if (typeof WOW !== 'undefined') {
         new WOW().init();
@@ -203,8 +217,9 @@ $(document).on('click', '.portfolio-filter-btn', function () {
 
     const filterValue = $(this).attr('data-filter');
 
+    // Sync active state across desktop tabs and mobile vertical list
     $('.portfolio-filter-btn').removeClass('active');
-    $(this).addClass('active');
+    $('.portfolio-filter-btn[data-filter="' + filterValue + '"]').addClass('active');
 
     // Reset pagination
     currentPage = 1;
@@ -224,34 +239,41 @@ $(document).on('click', '.portfolio-filter-btn', function () {
         }
     });
 
-    // Show only first 6 matching cards
-    updatePortfolioItems();
+    // Show only first matching cards
+    updatePortfolioItems(true);
 
     // Update Load More
     updateLoadMoreButton();
 });
 
 
-// Handle URL parameter for portfolio filter
-$(window).on('load', function () {
-
-    // Initialize Load More first
-    initLoadMore();
-
+// Handle URL parameter for portfolio filter and initial load
+$(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const filterParam = urlParams.get('filter');
 
-    if (filterParam) {
-
-        const $filterBtn =
-            $('.portfolio-filter-btn[data-filter="' + filterParam + '"]');
-
-        if ($filterBtn.length > 0) {
-            $filterBtn.trigger('click');
+    // Pre-fill contact form if project parameter is provided
+    const projectParam = urlParams.get('project');
+    if (projectParam && $('#contact-message').length) {
+        if (!$('#contact-message').val()) {
+            $('#contact-message').val('Hello GlobalX Team,\n\nI am interested in discussing a project similar to "' + projectParam + '". Please share information on technical scope, architecture, and collaboration options.');
         }
-    } else {
+    }
 
-        // Initial state
+    if ($('#loadMoreBtn').length > 0 || $('.portfolio-item-wrapper').length > 0) {
+        initLoadMore();
+
+        const filterParam = urlParams.get('filter');
+        if (filterParam) {
+            const $filterBtn = $('.portfolio-filter-btn[data-filter="' + filterParam + '"]');
+            if ($filterBtn.length > 0) {
+                $filterBtn.trigger('click');
+            }
+        }
+    }
+});
+
+$(window).on('load', function () {
+    if ($('#loadMoreBtn').length > 0 || $('.portfolio-item-wrapper').length > 0) {
         updatePortfolioItems();
         updateLoadMoreButton();
     }
@@ -307,34 +329,80 @@ const itemsPerPage = 8;
 function initLoadMore() {
 
     const $loadMoreBtn = $('#loadMoreBtn');
+    if ($loadMoreBtn.length === 0) return;
 
     // Remove previous click handler
     $loadMoreBtn.off('click.loadMore');
 
-    // Load More click
-    $loadMoreBtn.on('click.loadMore', function () {
+    // Load More click - Silky smooth reveal with zero flashing
+    $loadMoreBtn.on('click.loadMore', function (e) {
+        e.preventDefault();
+
+        const $btn = $(this);
+        if ($btn.prop('disabled')) return;
 
         currentPage++;
 
-        updatePortfolioItems();
+        // Reveal next batch without touching or repainting already visible cards
+        revealNextPortfolioItems();
         updateLoadMoreButton();
-
     });
 
     // Initial state
-    updatePortfolioItems();
+    updatePortfolioItems(false);
     updateLoadMoreButton();
 }
 
 
 // ================================
-// Update Portfolio Items
+// Reveal Next Batch of Items (Smooth Silk Glide)
 // ================================
 
-function updatePortfolioItems() {
+function revealNextPortfolioItems() {
+    const $items = $('.portfolio-item-wrapper');
+    // Find all hidden cards that match current active filter
+    const $hiddenFiltered = $items.not('.filter-hidden').filter('.hidden');
+
+    // Take next batch
+    const $batch = $hiddenFiltered.slice(0, itemsPerPage);
+
+    $batch.each(function (idx) {
+        const $item = $(this);
+
+        // Strip wow.js classes and inline styles to eliminate 1.0s delay and double-trigger
+        $item.removeClass('hidden wow fadeInUp');
+        $item.css({
+            'visibility': 'visible',
+            'opacity': '',
+            'animation-name': '',
+            'animation-delay': (idx * 0.06) + 's'
+        });
+
+        // Add smooth silk animation class
+        $item.addClass('portfolio-card-revealing');
+
+        // Cleanup after animation finishes so hover effects remain 100% natural
+        setTimeout(function () {
+            $item.removeClass('portfolio-card-revealing');
+            $item.css({
+                'animation-delay': '',
+                'visibility': 'visible',
+                'opacity': '1'
+            });
+        }, 450 + (idx * 60));
+    });
+}
+
+
+// ================================
+// Update Portfolio Items (For Filter & Initial Setup)
+// ================================
+
+function updatePortfolioItems(isFilterChange) {
 
     const $items = $('.portfolio-item-wrapper');
     let visibleCount = 0;
+    let revealIdx = 0;
 
     $items.each(function () {
 
@@ -342,18 +410,51 @@ function updatePortfolioItems() {
 
         // Filtered-out cards stay hidden
         if ($item.hasClass('filter-hidden')) {
-            $item.addClass('hidden');
+            $item.addClass('hidden').removeClass('portfolio-card-revealing');
             return;
         }
 
         if (visibleCount < currentPage * itemsPerPage) {
 
+            const wasHidden = $item.hasClass('hidden');
             $item.removeClass('hidden');
+
+            if (isFilterChange && wasHidden) {
+                // Smooth reveal for newly appearing cards under this filter
+                $item.removeClass('wow fadeInUp');
+                $item.css({
+                    'visibility': 'visible',
+                    'opacity': '',
+                    'animation-name': '',
+                    'animation-delay': (revealIdx * 0.05) + 's'
+                });
+                $item.addClass('portfolio-card-revealing');
+
+                (function (elem, delay) {
+                    setTimeout(function () {
+                        elem.removeClass('portfolio-card-revealing');
+                        elem.css({
+                            'animation-delay': '',
+                            'visibility': 'visible',
+                            'opacity': '1'
+                        });
+                    }, 400 + (delay * 50));
+                })($item, revealIdx);
+
+                revealIdx++;
+            } else {
+                // Ensure card is visible without re-triggering animations on already visible cards
+                $item.css({
+                    'visibility': 'visible',
+                    'opacity': '1'
+                });
+            }
+
             visibleCount++;
 
         } else {
 
-            $item.addClass('hidden');
+            $item.addClass('hidden').removeClass('portfolio-card-revealing');
         }
     });
 }
@@ -367,6 +468,9 @@ function updateLoadMoreButton() {
 
     const $items = $('.portfolio-item-wrapper');
     const $loadMoreBtn = $('#loadMoreBtn');
+    const $wrapper = $('#portfolioLoadMoreWrap').length ? $('#portfolioLoadMoreWrap') : $loadMoreBtn.closest('.text-center');
+
+    if ($loadMoreBtn.length === 0) return;
 
     // Count ONLY cards belonging to current filter
     const totalFilteredItems =
@@ -376,488 +480,207 @@ function updateLoadMoreButton() {
     const visibleFilteredItems =
         $items.not('.filter-hidden').not('.hidden').length;
 
-
-    // --------------------------------
-    // 6 or fewer cards
-    // --------------------------------
-
-    if (totalFilteredItems <= itemsPerPage) {
-
-        $loadMoreBtn.addClass('hidden');
-
-        return;
-    }
-
-
-    // --------------------------------
-    // More cards available
-    // --------------------------------
-
-    if (visibleFilteredItems < totalFilteredItems) {
-
-        $loadMoreBtn.removeClass('hidden');
-
+    // If all cards loaded or total items fit in first page, hide button & wrapper completely
+    if (totalFilteredItems <= itemsPerPage || visibleFilteredItems >= totalFilteredItems) {
+        $loadMoreBtn.addClass('hidden').hide();
+        $wrapper.addClass('hidden').hide();
     } else {
-
-        // All filtered cards already visible
-        $loadMoreBtn.addClass('hidden');
-
+        $loadMoreBtn.removeClass('hidden').show();
+        $wrapper.removeClass('hidden').show();
     }
 }
 
+
+
 // ==========================================
-// In-Depth Project Detail View (Flipkart Style)
+// GLOBALX Premium Minimal Project Detail View
 // ==========================================
 const portfolioProjectsData = {
     1: {
         title: "Custom Enterprise Software",
         category: "Enterprise Solutions",
         poster: "img/products/enterprise-software.webp",
-        rating: "4.9",
-        ratingsCount: "148 Ratings & 42 Enterprise Deployments",
-        timeline: "10 – 20 Business Days",
-        deployment: "AWS EC2 / Docker / On-Premise",
-        badge: "Enterprise Tier",
         tags: ["Java 21", "Spring Boot 3", "PostgreSQL", "React.js", "Docker", "Redis"],
-        desc: "Custom enterprise software built around your exact business requirements to streamline operations, automate workflows, manage massive datasets, and improve executive decision-making. Engineered with multi-tenant architecture, sub-second query latency, and high-security role-based access control.",
-        primaryCta: "REQUEST ARCHITECTURE PROPOSAL",
+        desc: "Custom enterprise software built to streamline operations, automate workflows, manage massive datasets, and improve executive decision-making across teams.",
         specs: {
             solutionType: "Modular Enterprise ERP & Automation Suite",
-            suitableFor: "Large Scale Operations, Corporate Teams & Campuses",
-            ownership: "100% Full Source Code & IP Handover",
-            delivery: "10 – 20 Business Days",
-            frontend: "React.js, Next.js, Redux Toolkit, Modern UI",
-            backend: "Spring Boot 3.2, Java 21, Hibernate ORM, REST APIs",
-            database: "PostgreSQL 16 (Relational) + Redis (In-Memory Cache)",
-            cloud: "AWS ECS, Docker Compose, Nginx Reverse Proxy",
-            auth: "Spring Security 6, JWT, Role-Based Access (RBAC)",
-            encryption: "AES-256 Database Encryption & TLS 1.3 In-Flight",
-            latency: "Sub-120ms API Latency, 99.99% Availability SLA"
+            suitableFor: "Large Scale Operations, Corporate Teams & Campuses"
         },
-        featuresTitle: "Enterprise Modules & Solutions",
         features: [
-            { title: "CRM & Pipeline Automation", desc: "Customers, leads pipeline, deal management, automated follow-up reminders, and sales performance tracking.", icon: "fas fa-users" },
-            { title: "Inventory & Warehousing", desc: "Real-time stock tracking across multiple warehouses, purchase order workflows, barcode management, and low-stock alerts.", icon: "fas fa-boxes-stacked" },
-            { title: "College & Campus ERP", desc: "Student life-cycle management, fee billing, automated receipt generation, biometric attendance, and grade management.", icon: "fas fa-graduation-cap" },
-            { title: "HRMS & Automated Payroll", desc: "Employee records, automated biometric attendance sync, leaves approval workflow, and one-click salary slip generation.", icon: "fas fa-user-tie" }
-        ],
-        deliverables: [
-            "Complete Private Git Repository with Full Source Code",
-            "Normalized Database Schemas, Triggers & Migration Scripts",
-            "OpenAPI / Swagger 3.0 Interactive Documentation",
-            "Docker Compose & Production Deployment Configurations",
-            "Comprehensive Administrator Manual & Training Video",
-            "12 Months Free Priority SLA & Security Patch Support"
+            { title: "CRM & Pipeline Automation", desc: "Leads pipeline, deal management, automated follow-up reminders, and sales performance tracking.", icon: "fas fa-users" },
+            { title: "Inventory & Warehousing", desc: "Real-time stock tracking across multiple warehouses, purchase order workflows, and low-stock alerts.", icon: "fas fa-boxes-stacked" },
+            { title: "College & Campus ERP", desc: "Student life-cycle management, fee billing, automated receipt generation, and attendance management.", icon: "fas fa-graduation-cap" },
+            { title: "HRMS & Automated Payroll", desc: "Employee records, attendance sync, leaves approval workflow, and one-click salary slip generation.", icon: "fas fa-user-tie" }
         ]
     },
     2: {
         title: "E-Commerce Shop",
         category: "E-Commerce Platform",
         poster: "img/products/e-commerce.webp",
-        rating: "4.9",
-        ratingsCount: "185 Ratings & 56 Store Launches",
-        timeline: "7 – 14 Business Days",
-        deployment: "Cloud VPS / Docker / AWS Lightsail",
-        badge: "High Conversion",
         tags: ["Spring Boot", "React.js", "PostgreSQL", "Razorpay / Stripe", "Redis", "Elasticsearch"],
-        desc: "A modern, high-converting e-commerce platform designed to help businesses showcase catalogs, manage orders, process secure digital payments, and deliver an ultra-fast shopping experience across all mobile and desktop devices.",
-        primaryCta: "LAUNCH YOUR ONLINE STORE",
+        desc: "A modern, high-converting e-commerce platform designed to showcase catalogs, manage orders, process secure digital payments, and deliver an ultra-fast shopping experience.",
         specs: {
-            solutionType: "Headless Omnichannel E-Commerce Store",
-            suitableFor: "Direct-to-Consumer (D2C) Brands & Multi-Vendor Retail",
-            ownership: "100% Full Source Code & Zero Revenue Commission",
-            delivery: "7 – 14 Business Days",
-            frontend: "React.js, Next.js 14 (SSR), Tailwind CSS",
-            backend: "Spring Boot / Node.js Express, Razorpay/Stripe SDK",
-            database: "PostgreSQL, Elasticsearch (Instant Search), Redis",
-            cloud: "AWS Lightsail / DigitalOcean, Cloudflare CDN",
-            auth: "JWT Authentication, OAuth2 (Google/Apple Login), Mobile OTP",
-            encryption: "PCI-DSS Compliant Payment Gateways & TLS 1.3",
-            latency: "Sub-80ms Page Delivery, 99.9% High Availability"
+            solutionType: "Omnichannel Online Storefront & Management",
+            suitableFor: "Direct-to-Consumer (D2C) Brands & Multi-Vendor Retail"
         },
-        featuresTitle: "Store Capabilities & Features",
         features: [
-            { title: "Dynamic Product Catalog", desc: "Multi-category products, variants (size/color), image galleries, custom attributes, and instant client-side search.", icon: "fas fa-boxes-stacked" },
-            { title: "Frictionless Cart & Checkout", desc: "High-conversion 1-page checkout flow with automatic coupon calculations, tax estimations, and multiple payment gateways.", icon: "fas fa-cart-shopping" },
-            { title: "Live Order Tracking", desc: "Real-time order statuses, shipment tracking numbers, and automated customer SMS/WhatsApp status updates.", icon: "fas fa-truck" },
-            { title: "Admin Analytics Hub", desc: "Daily sales revenue, top performing products, customer retention metrics, and real-time inventory valuation.", icon: "fas fa-chart-line" }
-        ],
-        deliverables: [
-            "Complete Source Code for Web Storefront & Admin Portal",
-            "Payment Gateway Integrations (UPI, Razorpay, Stripe, COD)",
-            "Automated Invoicing & WhatsApp Order Notification Engine",
-            "Production Docker Deployment & Cloudflare SSL Setup",
-            "Inventory & Bulk CSV Product Upload Utility",
-            "12 Months Complimentary Security & Maintenance SLA"
+            { title: "Dynamic Product Catalog", desc: "Multi-category products, variants (size/color), image galleries, custom attributes, and instant search.", icon: "fas fa-boxes-stacked" },
+            { title: "Frictionless Cart & Checkout", desc: "High-conversion checkout flow with automated coupon calculations, tax estimations, and payment gateway support.", icon: "fas fa-cart-shopping" },
+            { title: "Live Order Tracking", desc: "Real-time order statuses, shipment tracking numbers, and automated customer status notifications.", icon: "fas fa-truck" },
+            { title: "Admin Analytics Hub", desc: "Daily sales revenue, top performing products, customer retention metrics, and real-time inventory levels.", icon: "fas fa-chart-line" }
         ]
     },
     3: {
         title: "Advertising Website",
         category: "Business Website",
         poster: "img/products/advertising.webp",
-        rating: "4.8",
-        ratingsCount: "96 Ratings & 30+ Campaigns",
-        timeline: "5 – 8 Business Days",
-        deployment: "Vercel / AWS Amplify / Cloudflare Pages",
-        badge: "Ultra Fast LCP",
-        tags: ["Next.js 14", "Vue.js", "GSAP Animations", "Tailwind CSS", "HTML5"],
-        desc: "High-converting advertising and brand showcase website designed to launch campaigns, highlight service portfolios, capture high-intent inquiries, and maximize ROI on marketing campaigns.",
-        primaryCta: "START CAMPAIGN WEBSITE",
+        tags: ["Next.js", "Vue.js", "GSAP Animations", "Tailwind CSS", "HTML5"],
+        desc: "High-converting advertising and brand showcase website designed to launch marketing campaigns, highlight service portfolios, and capture high-intent client inquiries.",
         specs: {
             solutionType: "Conversion-Focused High-Performance Landing Hub",
-            suitableFor: "Ad Agencies, Product Launches & Growth Marketers",
-            ownership: "100% Full Source Code Handover",
-            delivery: "5 – 8 Business Days",
-            frontend: "Next.js 14, Vue.js, GSAP Animations, Tailwind CSS",
-            backend: "Serverless Edge Functions, Webhooks CRM Routing",
-            database: "Supabase / Firebase Realtime Leads Database",
-            cloud: "Vercel Edge Network, Cloudflare Global CDN",
-            auth: "Admin Portal Secure Token Access",
-            encryption: "Strict Content-Security-Policy & HTTPS Enforced",
-            latency: "99+ Google PageSpeed Score, Sub-0.6s LCP"
+            suitableFor: "Agencies, Product Launches & Growth-Driven Brands"
         },
-        featuresTitle: "Campaign & Promotion Capabilities",
         features: [
             { title: "Campaign Landing Pages", desc: "Engaging multimedia hero banners and conversion-driven layouts tailored for high CTR marketing campaigns.", icon: "fas fa-bullhorn" },
-            { title: "Instant Lead Capture", desc: "Interactive inquiry forms routed directly to CRM, email, and WhatsApp for instant response turnaround.", icon: "fas fa-envelope-open-text" },
-            { title: "Lightning Fast Speed", desc: "Optimized Core Web Vitals with sub-second page loads to maximize ad conversion rates and minimize bounce.", icon: "fas fa-bolt" },
-            { title: "SEO & Social OpenGraph", desc: "Full structured schema, rich social preview cards, and metadata crawl optimization for organic search dominance.", icon: "fas fa-magnifying-glass" }
-        ],
-        deliverables: [
-            "Pixel-Perfect Responsive Source Code with Clean Componentry",
-            "Interactive Contact & Lead Generation Form System",
-            "Google Analytics 4 & Meta Pixel Conversion Integration",
-            "Automated Email & Telegram/WhatsApp Lead Webhook",
-            "100% Optimized Assets & Sub-Second LCP Performance",
-            "1-Year Domain Linkage & Technical Maintenance"
+            { title: "Instant Lead Capture", desc: "Interactive inquiry forms routed directly to CRM, email, and WhatsApp for rapid response turnaround.", icon: "fas fa-envelope-open-text" },
+            { title: "Optimized Performance", desc: "Lightweight build and fast loading speeds to maximize ad campaign conversion rates and minimize bounce.", icon: "fas fa-bolt" },
+            { title: "SEO & Social Sharing", desc: "Full structured schema, social preview cards, and metadata crawl optimization for search visibility.", icon: "fas fa-magnifying-glass" }
         ]
     },
     4: {
         title: "Resume Portfolio Website",
         category: "Personal Branding",
         poster: "img/products/portfolio.webp",
-        rating: "4.9",
-        ratingsCount: "112 Ratings & 90+ Professional Profiles",
-        timeline: "3 – 5 Business Days",
-        deployment: "GitHub Pages / Netlify / Vercel",
-        badge: "Luxury Showcase",
         tags: ["HTML5", "CSS3", "Modern JavaScript", "Bootstrap 5", "FontAwesome"],
-        desc: "An interactive professional portfolio website designed for developers, creators, and executives to showcase projects, skills, career milestones, and client recommendations in an elegant, luxury format.",
-        primaryCta: "BUILD YOUR PORTFOLIO",
+        desc: "An interactive professional portfolio website designed for developers, creators, and executives to present projects, skills, career milestones, and credentials.",
         specs: {
             solutionType: "Interactive Executive & Developer Portfolio",
-            suitableFor: "Software Engineers, Designers, Consultants & Executives",
-            ownership: "100% Full Source Code & Custom Domain Setup",
-            delivery: "3 – 5 Business Days",
-            frontend: "HTML5, CSS3, Modern JavaScript, Bootstrap 5",
-            backend: "Static Generation / Serverless Form Handlers",
-            database: "Static JSON Data / Local Storage Sync",
-            cloud: "GitHub Pages, Cloudflare CDN, Custom Domain SSL",
-            auth: "N/A (Public Identity Showcase) + Encrypted Form API",
-            encryption: "HTTPS Enforced with Automated Let's Encrypt SSL",
-            latency: "Instantaneous Sub-50ms Global Loading"
+            suitableFor: "Software Engineers, Designers, Consultants & Executives"
         },
-        featuresTitle: "Key Portfolio Sections",
         features: [
-            { title: "Interactive Bio & Skills", desc: "Animated skill proficiency bars, tech stack badges, and achievements highlighting your professional edge.", icon: "fas fa-id-card" },
-            { title: "Career Timeline", desc: "Chronological employment history, education, and certified milestones with interactive expandable achievements.", icon: "fas fa-clock-rotate-left" },
+            { title: "Interactive Bio & Skills", desc: "Skill proficiency indicators, tech stack badges, and achievements highlighting your professional edge.", icon: "fas fa-id-card" },
+            { title: "Career Timeline", desc: "Chronological employment history, education, and certified milestones with expandable details.", icon: "fas fa-clock-rotate-left" },
             { title: "Categorized Project Showcase", desc: "Filterable work portfolio with live demo links, repository badges, and high-definition screenshots.", icon: "fas fa-laptop-code" },
             { title: "Direct Contact Form", desc: "One-click resume download and contact messaging widget connecting visitors directly to your inbox.", icon: "fas fa-paper-plane" }
-        ],
-        deliverables: [
-            "Complete Clean Frontend Codebase with Minimalist Typography",
-            "Custom Domain Configuration (e.g. yourname.com)",
-            "One-Click PDF Resume Download Link Integration",
-            "Spam-Protected Contact Form Routing to Personal Email",
-            "Mobile-Optimized Touch Gestures & Light/Dark Balance",
-            "Lifetime Deployment on Free Hosting Tier with Zero Fees"
         ]
     },
     5: {
         title: "Corporate Business Website",
         category: "Corporate Solutions",
         poster: "img/products/corporate-website.webp",
-        rating: "4.9",
-        ratingsCount: "128 Ratings & 44 Corporate Clients",
-        timeline: "7 – 12 Business Days",
-        deployment: "AWS EC2 / DigitalOcean / Nginx",
-        badge: "Enterprise Authority",
         tags: ["React.js", "Next.js", "Bootstrap 5", "Node.js", "Figma"],
-        desc: "A premium corporate website engineered to establish digital brand authority, articulate enterprise offerings, build credibility with institutional clients, and capture qualified consultation inquiries.",
-        primaryCta: "REQUEST CORPORATE PORTAL",
+        desc: "A premium corporate website engineered to establish digital brand authority, articulate enterprise offerings, build credibility with clients, and capture consultation inquiries.",
         specs: {
             solutionType: "Institutional Multi-Page Corporate Portal",
-            suitableFor: "Established Enterprises, Law Firms, Consulting & Tech",
-            ownership: "100% Full Source Code & Brand Assets Handover",
-            delivery: "7 – 12 Business Days",
-            frontend: "React.js, Next.js, Bootstrap 5, Figma Pixel-Perfect",
-            backend: "Node.js Express / NestJS Headless API",
-            database: "PostgreSQL / MongoDB Headless CMS",
-            cloud: "AWS Elastic Beanstalk, Docker, Cloudflare DNS",
-            auth: "Role-Based CMS Access (Admin, Editor, Reviewer)",
-            encryption: "TLS 1.3, Enterprise WAF & DDoS Shielding",
-            latency: "Sub-150ms TTFB, 99.95% Availability Guarantee"
+            suitableFor: "Established Enterprises, Consulting Firms & Tech Companies"
         },
-        featuresTitle: "Corporate Modules",
         features: [
             { title: "Enterprise Brand Identity", desc: "Sleek, minimalist aesthetic conveying institutional authority, reliability, and technical sophistication.", icon: "fas fa-building" },
             { title: "Services & Capabilities", desc: "Deep-dive sections detailing practice areas, methodologies, case studies, and corporate deliverables.", icon: "fas fa-briefcase" },
-            { title: "Lead Ingestion System", desc: "Consultation request routing, automatic email alerts, and integration with customer relationship management tools.", icon: "fas fa-bullseye" },
-            { title: "Interactive Branch Locations", desc: "Global and regional branch office listings with interactive maps, direct contacts, and local business hours.", icon: "fas fa-map-location-dot" }
-        ],
-        deliverables: [
-            "Complete Multi-Page Enterprise Responsive Portal",
-            "Headless CMS for One-Click Blog & Case Study Management",
-            "Interactive Contact & RFP / Quote Submission System",
-            "Professional Corporate Email Domain Setup & DNS Routing",
-            "Structured SEO Schema & Sitemap Configuration",
-            "12 Months Comprehensive Maintenance & SLA Uptime Support"
+            { title: "Lead Ingestion System", desc: "Consultation request routing, automatic email alerts, and integration with customer management tools.", icon: "fas fa-bullseye" },
+            { title: "Interactive Office Locations", desc: "Regional office listings with interactive maps, direct contacts, and local business hours.", icon: "fas fa-map-location-dot" }
         ]
     },
     6: {
         title: "Premium Black Theme Shop",
         category: "Luxury E-Commerce",
         poster: "img/products/black-ecommerce.webp",
-        rating: "5.0",
-        ratingsCount: "82 Ratings & 26 Luxury Deployments",
-        timeline: "10 – 16 Business Days",
-        deployment: "AWS / Docker Container / CDN",
-        badge: "Obsidian Edition",
         tags: ["Node.js", "React.js", "Tailwind CSS", "Framer Motion", "Stripe"],
         desc: "A luxury dark-themed online storefront tailored for high-end fashion, tech gadgets, and lifestyle brands seeking an immersive, cinematic shopping atmosphere.",
-        primaryCta: "BUILD LUXURY STOREFRONT",
         specs: {
             solutionType: "High-End Dark Aesthetic E-Commerce Experience",
-            suitableFor: "Luxury Brands, Fashion Boutiques, Watches & High-Tech",
-            ownership: "100% Exclusive Codebase & Custom Theme Rights",
-            delivery: "10 – 16 Business Days",
-            frontend: "React.js, Tailwind CSS, Framer Motion, HTML5 Canvas",
-            backend: "Node.js Microservices, Stripe & International Gateways",
-            database: "PostgreSQL (ACID Compliant) + Redis Cache",
-            cloud: "AWS ECS Containers, CloudFront Edge Delivery",
-            auth: "Biometric WebAuthn, JWT Session Tokens, OAuth2",
-            encryption: "End-to-End Encrypted Cart, PCI-DSS Level 1 Ready",
-            latency: "60 FPS Silky Smooth Animations, Sub-100ms TTFB"
+            suitableFor: "Luxury Brands, Fashion Boutiques, Watches & High-Tech Products"
         },
-        featuresTitle: "Luxury Store Highlights",
         features: [
-            { title: "Obsidian Luxury Aesthetics", desc: "Deep black glassmorphism with subtle frost accents, smooth micro-animations, and Apple-grade smoothness.", icon: "fas fa-gem" },
-            { title: "High-Res Visual Gallery", desc: "Immersive product photography showcase with quick-zoom, thumbnail carousels, and video integration.", icon: "fas fa-bag-shopping" },
-            { title: "Instant Search & Filtering", desc: "Real-time client-side filter by price, rating, collection, and tags for instantaneous browsing.", icon: "fas fa-sliders" },
-            { title: "Mobile-First Fluid Flow", desc: "Silky smooth mobile bottom drawer cart and one-thumb checkout navigation designed for maximum conversion.", icon: "fas fa-credit-card" }
-        ],
-        deliverables: [
-            "Bespoke Ultra-Luxury Dark Theme Front & Back-end Code",
-            "Global Currency & Stripe / PayPal International Checkout",
-            "Curated High-Definition Media Gallery & Zoom Viewers",
-            "Real-time Inventory Sync & Low-Stock Alerts",
-            "Automated Branded PDF Receipts & Dispatch Notes",
-            "1-Year Priority SLA & Security Infrastructure Support"
+            { title: "Minimal Dark Aesthetics", desc: "Deep obsidian backdrop with subtle frost accents, smooth micro-interactions, and visual polish.", icon: "fas fa-gem" },
+            { title: "High-Res Visual Gallery", desc: "Immersive product photography showcase with zoom, thumbnail navigation, and video integration.", icon: "fas fa-bag-shopping" },
+            { title: "Instant Search & Filtering", desc: "Real-time client-side filter by price, collection, and tags for instantaneous catalog browsing.", icon: "fas fa-sliders" },
+            { title: "Mobile-First Shopping Flow", desc: "Fluid mobile checkout drawer and responsive navigation designed for seamless customer purchases.", icon: "fas fa-credit-card" }
         ]
     },
     7: {
         title: "Car Wash System Pro",
         category: "Business Software",
         poster: "img/products/carwash.webp",
-        rating: "4.8",
-        ratingsCount: "74 Ratings & 35 Auto Centers",
-        timeline: "5 – 10 Business Days",
-        deployment: "Local On-Prem Server / Cloud VPS / XAMPP",
-        badge: "Turnkey System",
         tags: ["PHP 8.2", "MySQL 8", "JavaScript", "Bootstrap 5", "XAMPP"],
-        desc: "A complete car detailing and wash management platform automating booking schedules, service bay allocations, cashier billing, staff commissions, and business performance tracking.",
-        primaryCta: "DEPLOY CAR WASH SYSTEM",
+        desc: "A complete car detailing and wash management platform automating booking schedules, service bay allocations, cashier billing, staff tracking, and business metrics.",
         specs: {
             solutionType: "Automated Bay & POS Management Platform",
-            suitableFor: "Auto Detailing Studios, Car Wash Chains & Service Bays",
-            ownership: "100% Full Source Code, Lifetime Local/Cloud Setup",
-            delivery: "5 – 10 Business Days",
-            frontend: "Bootstrap 5, Responsive Tablet/Touch POS, jQuery",
-            backend: "PHP 8.2 (MVC Architecture), RESTful Endpoints",
-            database: "MySQL 8.0 / MariaDB with Daily Automated Backups",
-            cloud: "Apache/Nginx Web Server, Local LAN + Cloud Hybrid",
-            auth: "Cashier, Manager & Owner Multi-Level PIN/Password",
-            encryption: "Bcrypt Hash Security, Sanitized SQL Input PDO",
-            latency: "Instantaneous Touch Response (< 50ms Local LAN)"
+            suitableFor: "Auto Detailing Studios, Car Wash Chains & Service Bays"
         },
-        featuresTitle: "Operational Modules",
         features: [
             { title: "Bay Scheduling & Booking", desc: "Real-time bay capacity planning preventing customer bottlenecks and managing peak-hour drive-ins.", icon: "fas fa-calendar-check" },
             { title: "Tiered Service Packages", desc: "Wash, polish, interior detail, and ceramic coating pricing packages with custom add-on pricing.", icon: "fas fa-spray-can-sparkles" },
-            { title: "Technician & Bay Assignment", desc: "Worker productivity logging, job completion times, commission calculators, and quality audit stamps.", icon: "fas fa-user-check" },
-            { title: "Automated Invoicing & SMS", desc: "Instant digital receipts sent via SMS and WhatsApp to vehicle owners upon job sign-off.", icon: "fas fa-file-invoice-dollar" }
-        ],
-        deliverables: [
-            "Complete PHP Source Code & Pre-Configured MySQL Database",
-            "One-Click Local Offline Desktop Installer (XAMPP/WAMP)",
-            "Tablet-Optimized Cashier Touch POS Screen",
-            "Thermal Receipt Printer (58mm/80mm) Integration",
-            "Automated WhatsApp / SMS Bill Dispatching Module",
-            "Lifetime Code Ownership & 1-Year Free Technical Support"
+            { title: "Technician & Bay Assignment", desc: "Staff productivity logging, job completion times, commission calculators, and quality audit stamps.", icon: "fas fa-user-check" },
+            { title: "Automated Invoicing & SMS", desc: "Instant digital receipts sent via SMS and WhatsApp to vehicle owners upon job completion.", icon: "fas fa-file-invoice-dollar" }
         ]
     },
     8: {
         title: "The Gym Manager",
         category: "Fitness Tech",
         poster: "img/products/gym.webp",
-        rating: "4.8",
-        ratingsCount: "89 Ratings & 48 Fitness Studios",
-        timeline: "6 – 12 Business Days",
-        deployment: "Cloud VPS / Local Desktop Web Server",
-        badge: "Biometric Sync",
         tags: ["PHP 8.2", "PostgreSQL / MySQL", "JavaScript", "QR Code SDK"],
-        desc: "All-in-one health club and fitness center software handling member registrations, recurring subscriptions, trainer scheduling, biometric check-ins, and daily revenue reporting.",
-        primaryCta: "DEPLOY GYM SYSTEM",
+        desc: "All-in-one health club and fitness center software handling member registrations, recurring subscriptions, trainer scheduling, check-ins, and daily revenue reporting.",
         specs: {
-            solutionType: "Health Club & Membership ERP Software",
-            suitableFor: "Gyms, Crossfit Boxes, MMA Gyms & Wellness Centers",
-            ownership: "100% Full Source Code Handover",
-            delivery: "6 – 12 Business Days",
-            frontend: "Responsive Web Dashboard, QR Member Check-in Portal",
-            backend: "PHP 8.2 / Node.js, Biometric Hardware Sync SDK",
-            database: "PostgreSQL / MySQL with Subscription Auditing",
-            cloud: "DigitalOcean / Hostinger VPS, Automated Daily DB Dump",
-            auth: "Staff Role Isolation, Member QR Passcode System",
-            encryption: "HTTPS Enforced, Encrypted Contact & Billing Records",
-            latency: "< 1s Biometric Scan to Gate Access Turnaround"
+            solutionType: "Health Club & Membership Management Software",
+            suitableFor: "Gyms, Fitness Studios, MMA Centers & Wellness Clubs"
         },
-        featuresTitle: "Management Features",
         features: [
-            { title: "Member Digital Profiles", desc: "Fitness goals, medical notes, membership plans, emergency contacts, and workout attendance records.", icon: "fas fa-address-card" },
-            { title: "Membership Expiry Tracking", desc: "Automated renewal alerts, grace periods, payment receipts, and locker fee additions.", icon: "fas fa-repeat" },
-            { title: "Fast Biometric / QR Access", desc: "High-speed front-desk check-in validation preventing unauthorized entries and tracking facility occupancy.", icon: "fas fa-qrcode" },
+            { title: "Member Digital Profiles", desc: "Fitness goals, medical notes, membership plans, emergency contacts, and attendance history.", icon: "fas fa-address-card" },
+            { title: "Membership Expiry Tracking", desc: "Automated renewal alerts, grace periods, payment receipts, and locker fee tracking.", icon: "fas fa-repeat" },
+            { title: "Fast Biometric / QR Access", desc: "Front-desk check-in validation preventing unauthorized entries and monitoring facility occupancy.", icon: "fas fa-qrcode" },
             { title: "Trainer & Session Booking", desc: "Personal training appointment slots, trainer commission splits, and workout regimen tracking.", icon: "fas fa-dumbbell" }
-        ],
-        deliverables: [
-            "Complete Gym Management Source Code & Database Architecture",
-            "Member Mobile Web Check-in & Digital ID Card Generator",
-            "Automated Membership Renewal Reminders via WhatsApp",
-            "Daily Financial Cash & Online Collection Summary Reports",
-            "Multi-Branch Support Ready Architecture",
-            "12 Months Direct Technical Support & Server Maintenance"
         ]
     },
     9: {
         title: "Customize Mobile Apps",
         category: "Mobile Applications",
         poster: "img/products/mobile-app.webp",
-        rating: "4.9",
-        ratingsCount: "134 Ratings & 40+ App Store Publishes",
-        timeline: "12 – 24 Business Days",
-        deployment: "Google Play Store & Apple App Store",
-        badge: "Native 60FPS",
         tags: ["Flutter 3", "Kotlin", "Swift", "Firebase", "REST APIs", "SQLite"],
-        desc: "End-to-end bespoke mobile applications designed for enterprises and startups, ensuring 60fps native performance, biometric authentication, offline synchronization, and cloud scalability.",
-        primaryCta: "DISCUSS MOBILE APP IDEA",
+        desc: "End-to-end bespoke mobile applications designed for enterprises and startups, ensuring smooth native performance, biometric authentication, offline sync, and cloud scalability.",
         specs: {
             solutionType: "Cross-Platform iOS & Android Native Applications",
-            suitableFor: "Consumer Apps, On-Demand Delivery, Healthcare & FinTech",
-            ownership: "100% Full Flutter/Kotlin Code & App Store Accounts",
-            delivery: "12 – 24 Business Days",
-            frontend: "Flutter 3.x / Kotlin (Android) / Swift (iOS)",
-            backend: "Firebase Cloud Functions & Node.js REST API",
-            database: "Cloud Firestore / SQLite Offline Database",
-            cloud: "Google Cloud Platform, Firebase FCM Push Engine",
-            auth: "Biometric FaceID / Fingerprint, Firebase Auth, OAuth2",
-            encryption: "Android Keystore & iOS Keychain Secure Storage",
-            latency: "60 FPS Fluid UI Transitions, Offline-First Sync"
+            suitableFor: "Consumer Apps, On-Demand Delivery, Healthcare & FinTech"
         },
-        featuresTitle: "Native Capabilities",
         features: [
             { title: "Cross-Platform Codebase", desc: "Single performant codebase delivering native iOS and Android apps with shared business logic.", icon: "fas fa-mobile-screen-button" },
             { title: "Targeted Push Notifications", desc: "Segmented messaging campaigns with deep linking directly into app views, boosting retention.", icon: "fas fa-bell" },
-            { title: "Offline Data Persistence", desc: "SQLite/Room local database syncing effortlessly once network connectivity returns.", icon: "fas fa-cloud-arrow-up" },
-            { title: "Secure Biometric Auth", desc: "FaceID and fingerprint integration protecting sensitive customer information and transactions.", icon: "fas fa-shield-halved" }
-        ],
-        deliverables: [
-            "Production-Ready Flutter / Native Codebase (iOS & Android)",
-            "Google Play Store & Apple App Store Release Assets & Signing",
-            "Admin Web Dashboard for App Management & Content Moderation",
-            "FCM Push Notification Campaign Center Setup",
-            "Third-Party SDKs (Maps, Analytics, Payment Gateway) Configured",
-            "1-Year App Maintenance & Operating System Compatibility Updates"
+            { title: "Offline Data Persistence", desc: "Local database caching syncing effortlessly once network connectivity is re-established.", icon: "fas fa-cloud-arrow-up" },
+            { title: "Secure Biometric Auth", desc: "FaceID and fingerprint integration protecting sensitive customer credentials and transactions.", icon: "fas fa-shield-halved" }
         ]
     },
     10: {
         title: "Tourism Booking System",
         category: "Travel & Tourism",
         poster: "img/products/tourism.webp",
-        rating: "4.8",
-        ratingsCount: "67 Ratings & 22 Agency Portals",
-        timeline: "8 – 15 Business Days",
-        deployment: "Cloud VPS / AWS Elastic Beanstalk",
-        badge: "Multi-Currency Ready",
         tags: ["Java 21", "Node.js", "React.js", "MySQL 8", "Leaflet Maps"],
         desc: "An end-to-end travel and tour operator portal simplifying holiday package discovery, seasonal seat allocations, traveler itinerary downloads, and multi-currency payments.",
-        primaryCta: "BUILD TOURISM PORTAL",
         specs: {
             solutionType: "Travel Agency Booking & Itinerary Engine",
-            suitableFor: "Tour Operators, Destination DMC & Travel Consolidators",
-            ownership: "100% Full Source Code & Database Architecture",
-            delivery: "8 – 15 Business Days",
-            frontend: "React.js, Interactive Maps (Leaflet/Mapbox), Bootstrap",
-            backend: "Java 21 / Node.js Express, PDF Generation Engine",
-            database: "MySQL 8.0 Relational with Room/Seat Inventory Locks",
-            cloud: "AWS EC2, S3 (PDF Vouchers), Cloudflare CDN",
-            auth: "Customer Portal & Agent Commission Sub-accounts",
-            encryption: "PCI-DSS Payment Gateway Integration, TLS 1.3",
-            latency: "Instant Itinerary PDF Compilation (< 400ms)"
+            suitableFor: "Tour Operators, Destination DMCs & Travel Consolidators"
         },
-        featuresTitle: "Travel System Features",
         features: [
             { title: "Interactive Tour Itineraries", desc: "Day-by-day sightseeing agendas, hotel inclusions, photo galleries, and printable customer itineraries.", icon: "fas fa-map-pin" },
             { title: "Smart Seat & Room Allocations", desc: "Live availability calendar preventing overbooking across flight seats, vehicles, and hotel blocks.", icon: "fas fa-plane-departure" },
-            { title: "Digital Traveler Vouchers", desc: "Printable PDF and digital boarding passes generated immediately upon payment confirmation.", icon: "fas fa-passport" },
-            { title: "Multi-Currency Payment Gateway", desc: "Seamless checkout supporting major debit/credit cards, UPI, and international wallets.", icon: "fas fa-money-bill-transfer" }
-        ],
-        deliverables: [
-            "Complete Tour Booking Platform Source Code & Database",
-            "Dynamic Holiday Package Builder with Image Carousels",
-            "Automated PDF Voucher & Ticket Generator",
-            "Multi-Currency Payment Gateway (Razorpay/Stripe)",
-            "Agent Commission Tracking & Sub-Agent Portal",
-            "12 Months Server Maintenance & SLA Support"
+            { title: "Digital Traveler Vouchers", desc: "Printable PDF and digital boarding passes generated immediately upon booking confirmation.", icon: "fas fa-passport" },
+            { title: "Multi-Currency Payment Gateway", desc: "Seamless checkout supporting major debit/credit cards, UPI, and international payment gateways.", icon: "fas fa-money-bill-transfer" }
         ]
     },
     11: {
         title: "Advance Billing SaaS Application",
         category: "SaaS Product",
         poster: "img/products/billing-saas.webp",
-        rating: "5.0",
-        ratingsCount: "52 Pilot Deployments & Early Access",
-        timeline: "Upcoming Release / Early Enterprise Access",
-        deployment: "Kubernetes / Multi-Region AWS Cloud",
-        badge: "Multi-Tenant SaaS",
         tags: ["Spring Boot", "Next.js 14", "PostgreSQL", "Docker", "Kafka", "Redis"],
         desc: "Enterprise cloud billing and business operating platform consolidating multi-entity invoicing, automated recurring subscriptions, inventory tracking, and tax compliance.",
-        primaryCta: "REQUEST EARLY SAAS ACCESS",
         specs: {
             solutionType: "Multi-Entity Cloud Invoicing & Financial Operations SaaS",
-            suitableFor: "SaaS Founders, Wholesale Distributors & Multi-Branch Hubs",
-            ownership: "Enterprise License / Dedicated Private SaaS Cluster",
-            delivery: "Immediate Pilot Access / Custom Instance 10 Days",
-            frontend: "Next.js 14 App Router, TypeScript, Tailwind, Tremor Charts",
-            backend: "Spring Boot / Node.js Microservices, Kafka Message Broker",
-            database: "PostgreSQL (Schema-per-Tenant) + Redis Sentinel",
-            cloud: "AWS EKS (Kubernetes), Docker Containers, Terraform IaC",
-            auth: "SAML 2.0, SSO, OAuth2, Granular Multi-Tenant RBAC",
-            encryption: "AES-256 Tenant Data Isolation, Automated Audit Logs",
-            latency: "< 50ms Cache Hit, 99.99% High Availability SLA"
+            suitableFor: "SaaS Founders, Wholesale Distributors & Multi-Branch Hubs"
         },
-        featuresTitle: "SaaS Platform Features",
         features: [
             { title: "Automated GST Compliance", desc: "Instant e-way bill generation, recurring subscription billing, and multi-currency tax compliance.", icon: "fas fa-receipt" },
             { title: "Multi-Branch Consolidation", desc: "Unified financial dashboard rolling up numbers across multiple subsidiaries and retail branches.", icon: "fas fa-network-wired" },
             { title: "Live Inventory Deductions", desc: "Automatic stock reduction upon billing with real-time supplier replenishment alerts.", icon: "fas fa-boxes-stacked" },
-            { title: "Predictive Cash Flow Analytics", desc: "Real-time receivables aging, P&L reporting, and AI-assisted expense forecasting.", icon: "fas fa-chart-pie" }
-        ],
-        deliverables: [
-            "Dedicated SaaS Tenant Instance or Private Multi-Tenant Setup",
-            "Multi-GST & Multi-Currency Automated Billing Modules",
-            "Automated PDF Invoicing & WhatsApp Delivery System",
-            "Bank Account Reconciliation & Payment Gateway Webhooks",
-            "Granular Role Permissions (Cashier, Accountant, Admin)",
-            "Enterprise 99.99% Uptime SLA & 24/7 Priority Support"
+            { title: "Predictive Cash Flow Analytics", desc: "Real-time receivables aging, P&L reporting, and expense forecasting.", icon: "fas fa-chart-pie" }
         ]
     }
 };
@@ -870,98 +693,67 @@ window.openProjectDetail = function(projectId) {
 
     lastOpenedProjectId = projectId;
 
-    // Breadcrumbs
-    $('#detailBreadcrumbCategory').text(data.category);
-    $('#detailBreadcrumbTitle').text(data.title);
+    // A. Minimal Navigation
+    $('#detailNavCategory').text(data.category);
 
-    // Header & Badges
-    $('#detailCategoryBadge').text(data.category.toUpperCase());
-    $('#detailTitle').text(data.title);
-    $('#detailRatingBadge').html((data.rating || '4.9') + ' <i class="fas fa-star ms-1"></i>');
-    $('#detailRatingsCount').text(data.ratingsCount || '140+ Deployments & Reviews');
-    $('#detailBadgeType').html('<i class="fas fa-bolt text-warning me-1"></i> ' + (data.badge || 'Enterprise Grade'));
-    $('#detailPosterImg').attr('src', data.poster).attr('alt', data.title);
+    // B. Hero Section
+    $('#detailHeroCategory').text(data.category.toUpperCase());
+    $('#detailHeroId').text('GLOBALX PRODUCT #' + String(projectId).padStart(2, '0'));
+    $('#detailHeroTitle').text(data.title);
+    $('#detailHeroSubtitle').text(data.desc);
+    $('#detailHeroPoster').attr('src', data.poster).attr('alt', data.title);
 
-    // Delivery & Deployment
-    $('#detailTimeline').text(data.timeline || '7 – 14 Business Days');
-    $('#detailDeploymentMode').text(data.deployment || 'Cloud / Docker / On-Prem');
+    // CTAs (Primary & WhatsApp)
+    const encodedTitle = encodeURIComponent(data.title);
+    const contactUrl = 'contact.html?project=' + encodedTitle;
+    $('#detailPrimaryCta').attr('href', contactUrl);
+    $('#detailBottomContactCta').attr('href', contactUrl);
 
-    // CTAs
-    $('#detailPrimaryCtaText').text(data.primaryCta || 'REQUEST CUSTOM PROPOSAL');
-    const waMsg = encodeURIComponent("Hello GlobalX Team, I am interested in your project: " + data.title + " (" + data.category + "). Please share technical specifications, deployment timelines, and pricing quote.");
-    $('#detailWhatsappCta').attr('href', 'https://wa.me/919272399002?text=' + waMsg);
+    const waMsg = encodeURIComponent("Hello GlobalX Team, I would like to inquire about: " + data.title + " (" + data.category + ").");
+    const waUrl = 'https://wa.me/919272399002?text=' + waMsg;
+    $('#detailWhatsappCta').attr('href', waUrl);
+    $('#detailBottomWhatsappCta').attr('href', waUrl);
 
-    // Overview & Tags
-    $('#detailDesc').text(data.desc);
-    const $techTags = $('#detailTechTags');
-    $techTags.empty();
-    if (data.tags) {
-        data.tags.forEach(function(tag) {
-            $techTags.append('<span class="tag-badge">' + tag + '</span>');
-        });
-    }
-
-    // Specifications Table (Flipkart Style)
+    // C. Project Overview
+    $('#detailOverviewDesc').text(data.desc);
     const specs = data.specs || {};
-    $('#specSolutionType').text(specs.solutionType || 'Custom Enterprise Software');
-    $('#specSuitableFor').text(specs.suitableFor || 'Startups, SMEs & Enterprise Operations');
-    $('#specOwnership').text(specs.ownership || '100% Full Source Code & IP Handover');
-    $('#specDelivery').text(specs.delivery || data.timeline || '7 – 14 Business Days');
-    $('#specFrontend').text(specs.frontend || 'React.js, Next.js, Modern CSS');
-    $('#specBackend').text(specs.backend || 'Spring Boot, Java 21, REST APIs');
-    $('#specDatabase').text(specs.database || 'PostgreSQL, MySQL, Redis Cache');
-    $('#specCloud').text(specs.cloud || 'AWS Cloud, Docker, Nginx, CI/CD');
-    $('#specAuth').text(specs.auth || 'JWT, OAuth2, Role-Based Access Control');
-    $('#specEncryption').text(specs.encryption || 'AES-256 Storage & TLS 1.3 Encryption');
-    $('#specLatency').text(specs.latency || 'Sub-150ms Response Time, 99.9% Uptime');
+    $('#detailSpecPurpose').text(specs.solutionType || data.category);
+    $('#detailSpecTarget').text(specs.suitableFor || 'Modern businesses & high-growth operations');
 
-    // Features Grid
-    $('#detailFeaturesTitle').html('<i class="fas fa-layer-group text-primary me-2"></i> ' + (data.featuresTitle || 'Core System Modules'));
-    const $featuresGrid = $('#detailFeaturesGrid');
-    $featuresGrid.empty();
-    if (data.features) {
+    // D. Key Features (3–6 clean minimal cards)
+    const $featuresContainer = $('#detailFeaturesContainer');
+    $featuresContainer.empty();
+    if (data.features && data.features.length) {
         data.features.forEach(function(f) {
-            $featuresGrid.append(`
-                <div class="col-md-6">
-                    <div class="detail-feature-card">
-                        <i class="${f.icon || 'fas fa-check-circle'} detail-feature-icon"></i>
-                        <div>
-                            <strong class="text-white d-block mb-1">${f.title}</strong>
-                            <small class="text-muted d-block">${f.desc}</small>
+            $featuresContainer.append(`
+                <div class="col-md-6 col-lg-3">
+                    <div class="gx-feature-card">
+                        <div class="gx-feature-icon-wrap">
+                            <i class="${f.icon || 'fas fa-layer-group'}"></i>
                         </div>
+                        <h4 class="gx-feature-title">${f.title}</h4>
+                        <p class="gx-feature-desc">${f.desc}</p>
                     </div>
                 </div>
             `);
         });
     }
 
-    // Deliverables List ("In The Box")
-    const $delivList = $('#detailDeliverablesList');
-    $delivList.empty();
-    const deliverables = data.deliverables || [
-        "Complete Private Git Repository with Full Source Code",
-        "Clean Database Schemas & Production Migration Scripts",
-        "OpenAPI / Swagger Interactive Documentation",
-        "Docker Containerization & Server Setup Script",
-        "12 Months Free Priority SLA & Bug-Fix Maintenance"
-    ];
-    deliverables.forEach(function(item) {
-        $delivList.append(`
-            <div class="col-md-6">
-                <div class="d-flex align-items-center gap-2 py-1 text-light">
-                    <i class="fas fa-check-circle text-primary flex-shrink-0"></i>
-                    <span style="font-size: 13.5px;">${item}</span>
-                </div>
-            </div>
-        `);
-    });
+    // E. Technology Stack (understated labels)
+    const $techBadges = $('#detailTechBadges');
+    $techBadges.empty();
+    if (data.tags && data.tags.length) {
+        data.tags.forEach(function(tag) {
+            $techBadges.append('<span class="gx-tech-pill">' + tag + '</span>');
+        });
+    }
 
-    // Smooth instant transition to Flipkart product view
+    // Smooth transition
     $('#portfolioSectionHeader').slideUp(180);
     $('#portfolioListingView').hide();
     $('#portfolioDetailView').fadeIn(200);
 
-    // Scroll immediately to top of detail view
+    // Smooth scroll to top of detail view
     setTimeout(function() {
         if ($('#portfolioDetailView').length) {
             const targetOffset = $('#portfolioDetailView').offset().top - 80;
@@ -969,7 +761,7 @@ window.openProjectDetail = function(projectId) {
         }
     }, 50);
 
-    // Update URL hash without reload
+    // Update URL hash without page reload
     try {
         history.pushState({ projectId: projectId }, "", "#project-" + projectId);
     } catch(e) {

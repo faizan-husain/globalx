@@ -1,0 +1,19 @@
+# robots.txt for GLOBALX Software
+# Production Website: https://globalxsoftware.vercel.app/
+
+User-agent: *
+Allow: /
+
+# Disallow internal scratch/test directories
+Disallow: /scratch/
+
+# Googlebot specific directives
+User-agent: Googlebot
+Allow: /
+Allow: /css/
+Allow: /js/
+Allow: /lib/
+Allow: /img/
+
+# Canonical Sitemap
+Sitemap: https://globalxsoftware.vercel.app/sitemap.xml
