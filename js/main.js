@@ -25,9 +25,15 @@
     updateDynamicYear();
     $(document).ready(updateDynamicYear);
 
-    // 2. Initiate WOW.js for animations
+    // 2. Initiate WOW.js for animations (disabled on mobile devices to prevent off-screen transform viewport zooming)
     if (typeof WOW !== 'undefined') {
-        new WOW().init();
+        new WOW({
+            boxClass: 'wow',
+            animateClass: 'animated',
+            offset: 0,
+            mobile: false,
+            live: true
+        }).init();
     }
 
     // 3. Scroll Progress & Sticky Navbar & Back to Top Toggle
@@ -84,6 +90,18 @@
         } else {
             $dropdown.off("mouseenter mouseleave");
         }
+    });
+
+    // 5b. Reset Dropdown Toggle State & Arrow on Mobile/Touch
+    $(document).on("hidden.bs.dropdown", ".dropdown", function () {
+        const $toggle = $(this).find(".dropdown-toggle");
+        $toggle.attr("aria-expanded", "false").removeClass("show").blur();
+    });
+
+    $("#navbarCollapse").on("hidden.bs.collapse", function () {
+        $(this).find(".dropdown-toggle").attr("aria-expanded", "false").removeClass("show").blur();
+        $(this).find(".dropdown-menu").removeClass("show");
+        $(this).find(".dropdown").removeClass("show");
     });
 
     // 6. Dynamic Spotlight Hover Effect for Glass Cards

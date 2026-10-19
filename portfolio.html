@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Software Projects & Portfolio | GLOBALX Software</title>
     <meta name="description"
         content="Discover featured software projects, web applications, client MVPs, and enterprise systems delivered by GLOBALX Software for businesses across Maharashtra.">
@@ -39,12 +40,17 @@
         content="Discover custom software applications and business websites delivered by GLOBALX Software.">
     <meta name="twitter:image" content="https://globalxsoftware.vercel.app/img/preview.webp">
 
-    <!-- Favicon / Brand Icon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/icon.png?v=5.0">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/icon.png?v=5.0">
-    <link rel="shortcut icon" type="image/png" href="img/icon.png?v=5.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/icon.png?v=5.0">
+    <!-- Favicon / Brand Icon (Full Absolute URLs for WhatsApp, Telegram & Search Engines) -->
+    <link rel="icon" type="image/x-icon" href="https://globalxsoftware.vercel.app/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://globalxsoftware.vercel.app/img/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://globalxsoftware.vercel.app/img/icon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://globalxsoftware.vercel.app/img/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://globalxsoftware.vercel.app/img/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://globalxsoftware.vercel.app/favicon.ico">
+    <link rel="manifest" href="https://globalxsoftware.vercel.app/site.webmanifest">
+    <meta name="msapplication-TileImage" content="https://globalxsoftware.vercel.app/img/icon-192x192.png">
+    <meta name="msapplication-TileColor" content="#05070B">
+    <meta name="theme-color" content="#05070B">
 
     <!-- Google Web Fonts (Inter & Geist Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +71,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Premium Stylesheet -->
-    <link href="css/style.css?v=6.9" rel="stylesheet">
+    <link href="css/style.css?v=7.7" rel="stylesheet">
 
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
@@ -107,7 +113,7 @@
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container">
                 <a href="index.html" class="navbar-brand p-0">
                     <img src="img/logo-trans.png?v=4.0" alt="GlobalX" class="navbar-logo">
@@ -117,8 +123,8 @@
                     <a href="contact.html" class="consultation-icon me-3">
                         <i class="bi bi-headset"></i>
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse" aria-label="Toggle navigation">
                         <span class="fa fa-bars"></span>
                     </button>
                 </div>
@@ -127,7 +133,7 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="about.html" class="nav-item nav-link">ABOUT</a>
                         <a href="service.html" class="nav-item nav-link">SERVICES</a>
-                        
+
                         <!-- PRODUCTS Dropdown with Filters -->
                         <div class="nav-item dropdown">
                             <a href="portfolio.html" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">
@@ -136,31 +142,61 @@
                             <div class="dropdown-menu m-0">
                                 <a href="portfolio.html" class="dropdown-item active" data-filter="all">
                                     <span>All Products</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="portfolio.html?filter=student" class="dropdown-item" data-filter="student">
                                     <span>Student Projects</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="portfolio.html?filter=web" class="dropdown-item" data-filter="web">
                                     <span>Business Websites</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
-                                <a href="portfolio.html?filter=e-commerce" class="dropdown-item" data-filter="e-commerce">
+                                <a href="portfolio.html?filter=e-commerce" class="dropdown-item"
+                                    data-filter="e-commerce">
                                     <span>E-Commerce</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
-                                <a href="portfolio.html?filter=mobile-app" class="dropdown-item" data-filter="mobile-app">
+                                <a href="portfolio.html?filter=mobile-app" class="dropdown-item"
+                                    data-filter="mobile-app">
                                     <span>Mobile Apps</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="portfolio.html?filter=software" class="dropdown-item" data-filter="software">
                                     <span>Enterprise Software</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="portfolio.html?filter=saas" class="dropdown-item" data-filter="saas">
                                     <span>SaaS Products</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                             </div>
                         </div>
@@ -173,22 +209,38 @@
                             <div class="dropdown-menu m-0">
                                 <a href="technologies.html" class="dropdown-item">
                                     <span>Technologies</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="pricing.html" class="dropdown-item">
                                     <span>Pricing</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="testimonials.html" class="dropdown-item">
                                     <span>Testimonials</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="careers.html" class="dropdown-item">
                                     <span>Careers</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
-                                <div class="dropdown-divider"></div>
-                                <div class="dropdown-submenu">
+                                <div class="dropdown-divider d-none d-lg-block"></div>
+                                <div class="dropdown-submenu d-none d-lg-block">
                                     <a href="#" class="dropdown-item submenu-toggle">
                                         <span>Legal</span>
                                         <i class="fas fa-chevron-right submenu-chevron"></i>
@@ -196,15 +248,30 @@
                                     <div class="dropdown-menu submenu">
                                         <a href="privacy-policy.html" class="dropdown-item">
                                             <span>Privacy Policy</span>
-                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11"
+                                                    viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor"
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg></span>
                                         </a>
                                         <a href="terms-conditions.html" class="dropdown-item">
                                             <span>Terms & Conditions</span>
-                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11"
+                                                    viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor"
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg></span>
                                         </a>
                                         <a href="disclaimer.html" class="dropdown-item">
                                             <span>Disclaimer</span>
-                                            <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                            <span class="dropdown-item-arrow"><svg width="11" height="11"
+                                                    viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor"
+                                                        stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg></span>
                                         </a>
                                     </div>
                                 </div>
@@ -219,15 +286,27 @@
                             <div class="dropdown-menu m-0">
                                 <a href="privacy-policy.html" class="dropdown-item">
                                     <span>Privacy Policy</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="terms-conditions.html" class="dropdown-item">
                                     <span>Terms & Conditions</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                                 <a href="disclaimer.html" class="dropdown-item">
                                     <span>Disclaimer</span>
-                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                    <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg></span>
                                 </a>
                             </div>
                         </div>
@@ -261,13 +340,15 @@
 
                     <!-- A. Minimal Navigation -->
                     <header class="gx-detail-nav d-flex align-items-center justify-content-between">
-                        <button type="button" class="gx-detail-back-btn" onclick="closeProjectDetail()" aria-label="Back to projects">
+                        <button type="button" class="gx-detail-back-btn" onclick="closeProjectDetail()"
+                            aria-label="Back to projects">
                             <i class="fas fa-arrow-left me-2"></i>
                             <span>Back to Projects</span>
                         </button>
 
                         <div class="d-flex align-items-center gap-3">
-                            <span class="gx-detail-nav-category text-truncate d-none d-sm-inline" id="detailNavCategory">Software</span>
+                            <span class="gx-detail-nav-category text-truncate d-none d-sm-inline"
+                                id="detailNavCategory">Software</span>
                             <a href="contact.html" class="gx-detail-nav-contact">
                                 <span>Discuss a Project</span>
                                 <i class="fas fa-arrow-right ms-1"></i>
@@ -285,7 +366,8 @@
 
                         <h1 class="gx-hero-title" id="detailHeroTitle">Custom Enterprise Software</h1>
                         <p class="gx-hero-subtitle" id="detailHeroSubtitle">
-                            Tailored software architecture designed to streamline operations, automate workflows, and scale high-volume business operations.
+                            Tailored software architecture designed to streamline operations, automate workflows, and
+                            scale high-volume business operations.
                         </p>
 
                         <!-- Primary & Secondary CTAs -->
@@ -294,7 +376,8 @@
                                 <span>Discuss a Similar Project</span>
                                 <i class="fas fa-arrow-right ms-2"></i>
                             </a>
-                            <a href="https://wa.me/919272399002" target="_blank" id="detailWhatsappCta" class="gx-btn-secondary">
+                            <a href="https://wa.me/919272399002" target="_blank" id="detailWhatsappCta"
+                                class="gx-btn-secondary">
                                 <i class="fab fa-whatsapp me-2"></i>
                                 <span>WhatsApp Inquiry</span>
                             </a>
@@ -303,7 +386,8 @@
                         <!-- Prominent Visual Showcase -->
                         <div class="gx-showcase-wrapper">
                             <div class="gx-showcase-frame">
-                                <img id="detailHeroPoster" src="img/products/enterprise-software.webp" alt="Project Showcase" class="gx-showcase-img" loading="lazy">
+                                <img id="detailHeroPoster" src="img/products/enterprise-software.webp"
+                                    alt="Project Showcase" class="gx-showcase-img" loading="lazy">
                             </div>
                         </div>
                     </section>
@@ -318,16 +402,20 @@
                             <div class="col-lg-8">
                                 <div class="gx-overview-content">
                                     <p class="gx-overview-desc" id="detailOverviewDesc">
-                                        Custom enterprise software built around your exact business requirements to streamline operations, automate workflows, manage massive datasets, and improve executive decision-making.
+                                        Custom enterprise software built around your exact business requirements to
+                                        streamline operations, automate workflows, manage massive datasets, and improve
+                                        executive decision-making.
                                     </p>
                                     <div class="row g-4 mt-2 pt-3 border-top border-secondary-subtle">
                                         <div class="col-sm-6">
                                             <span class="gx-spec-micro-label">PRIMARY PURPOSE</span>
-                                            <p class="gx-spec-micro-val" id="detailSpecPurpose">Modular Enterprise ERP & Automation Suite</p>
+                                            <p class="gx-spec-micro-val" id="detailSpecPurpose">Modular Enterprise ERP &
+                                                Automation Suite</p>
                                         </div>
                                         <div class="col-sm-6">
                                             <span class="gx-spec-micro-label">DESIGNED FOR</span>
-                                            <p class="gx-spec-micro-val" id="detailSpecTarget">Large Scale Operations, Corporate Teams & Campuses</p>
+                                            <p class="gx-spec-micro-val" id="detailSpecTarget">Large Scale Operations,
+                                                Corporate Teams & Campuses</p>
                                         </div>
                                     </div>
                                 </div>
@@ -373,10 +461,11 @@
 
                             <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-4">
                                 <a href="contact.html" id="detailBottomContactCta" class="gx-btn-primary">
-                                    <span>Contact Our Engineering Team</span>
+                                    <span>Contact Our Team</span>
                                     <i class="fas fa-arrow-right ms-2"></i>
                                 </a>
-                                <a href="https://wa.me/919272399002" target="_blank" id="detailBottomWhatsappCta" class="gx-btn-secondary">
+                                <a href="https://wa.me/919272399002" target="_blank" id="detailBottomWhatsappCta"
+                                    class="gx-btn-secondary">
                                     <i class="fab fa-whatsapp me-2"></i>
                                     <span>Quick Chat on WhatsApp</span>
                                 </a>
@@ -389,7 +478,8 @@
                 <!-- Portfolio Listing View -->
                 <div id="portfolioListingView">
                     <!-- Desktop Filter Tabs (Desktop / Tablet) -->
-                    <div class="portfolio-filter-desktop d-none d-md-flex justify-content-center mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="portfolio-filter-desktop d-none d-md-flex justify-content-center mb-5 wow fadeInUp"
+                        data-wow-delay="0.2s">
                         <button class="portfolio-filter-btn active" data-filter="all">All</button>
                         <button class="portfolio-filter-btn" data-filter="student">Student Projects</button>
                         <button class="portfolio-filter-btn" data-filter="web">Business Websites</button>
@@ -404,31 +494,59 @@
                         <div class="mobile-filter-card">
                             <button class="portfolio-filter-btn mobile-filter-btn active" data-filter="all">
                                 <span>All Products</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="student">
                                 <span>Student Projects</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="web">
                                 <span>Business Websites</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="e-commerce">
                                 <span>E-Commerce</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="mobile-app">
                                 <span>Mobile Apps</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="software">
                                 <span>Enterprise Software</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                             <button class="portfolio-filter-btn mobile-filter-btn" data-filter="saas">
                                 <span>SaaS Products</span>
-                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                <span class="dropdown-item-arrow"><svg width="11" height="11" viewBox="0 0 12 12"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg></span>
                             </button>
                         </div>
                     </div>
@@ -436,10 +554,12 @@
                     <!-- Projects Grid (xAI-style Compact Cards) -->
                     <div class="row g-4 portfolio-container">
                         <!-- 1. Custom Enterprise Software -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="software" data-wow-delay="0.1s" data-project-id="1">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="software" data-wow-delay="0.1s" data-project-id="1">
                             <div class="xai-project-card" onclick="openProjectDetail(1)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/enterprise-software.webp" alt="Custom Enterprise Software" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/enterprise-software.webp" alt="Custom Enterprise Software"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -455,10 +575,12 @@
                         </div>
 
                         <!-- 2. E-Commerce Shop -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce" data-wow-delay="0.2s" data-project-id="2">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="e-commerce" data-wow-delay="0.2s" data-project-id="2">
                             <div class="xai-project-card" onclick="openProjectDetail(2)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/e-commerce.webp" alt="E-Commerce Shop" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/e-commerce.webp" alt="E-Commerce Shop"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -474,10 +596,12 @@
                         </div>
 
                         <!-- 3. Advertising Website -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.3s" data-project-id="3">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
+                            data-wow-delay="0.3s" data-project-id="3">
                             <div class="xai-project-card" onclick="openProjectDetail(3)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/advertising.webp" alt="Advertising Website" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/advertising.webp" alt="Advertising Website"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -493,10 +617,12 @@
                         </div>
 
                         <!-- 4. Resume Portfolio Website -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.4s" data-project-id="4">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
+                            data-wow-delay="0.4s" data-project-id="4">
                             <div class="xai-project-card" onclick="openProjectDetail(4)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/portfolio.webp" alt="Resume Portfolio Website" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/portfolio.webp" alt="Resume Portfolio Website"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -512,10 +638,12 @@
                         </div>
 
                         <!-- 5. Corporate Business Website -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web" data-wow-delay="0.5s" data-project-id="5">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="web"
+                            data-wow-delay="0.5s" data-project-id="5">
                             <div class="xai-project-card" onclick="openProjectDetail(5)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/corporate-website.webp" alt="Corporate Business Website" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/corporate-website.webp" alt="Corporate Business Website"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -531,10 +659,12 @@
                         </div>
 
                         <!-- 6. Premium Black Theme Shop -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="e-commerce" data-wow-delay="0.6s" data-project-id="6">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="e-commerce" data-wow-delay="0.6s" data-project-id="6">
                             <div class="xai-project-card" onclick="openProjectDetail(6)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/black-ecommerce.webp" alt="Premium Black Theme Shop" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/black-ecommerce.webp" alt="Premium Black Theme Shop"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -550,10 +680,12 @@
                         </div>
 
                         <!-- 7. Car Wash System Pro -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="0.7s" data-project-id="7">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="student" data-wow-delay="0.7s" data-project-id="7">
                             <div class="xai-project-card" onclick="openProjectDetail(7)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/carwash.webp" alt="Car Wash System Pro" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/carwash.webp" alt="Car Wash System Pro"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -569,10 +701,12 @@
                         </div>
 
                         <!-- 8. The Gym Manager -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="0.8s" data-project-id="8">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="student" data-wow-delay="0.8s" data-project-id="8">
                             <div class="xai-project-card" onclick="openProjectDetail(8)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/gym.webp" alt="The Gym Manager" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/gym.webp" alt="The Gym Manager" class="xai-project-img"
+                                        loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -588,10 +722,12 @@
                         </div>
 
                         <!-- 9. Customize Mobile Apps -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="mobile-app" data-wow-delay="0.9s" data-project-id="9">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="mobile-app" data-wow-delay="0.9s" data-project-id="9">
                             <div class="xai-project-card" onclick="openProjectDetail(9)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/mobile-app.webp" alt="Customize Mobile Apps" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/mobile-app.webp" alt="Customize Mobile Apps"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -607,10 +743,12 @@
                         </div>
 
                         <!-- 10. Tourism Booking System -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="student" data-wow-delay="1.0s" data-project-id="10">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp"
+                            data-category="student" data-wow-delay="1.0s" data-project-id="10">
                             <div class="xai-project-card" onclick="openProjectDetail(10)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/tourism.webp" alt="Tourism Booking System" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/tourism.webp" alt="Tourism Booking System"
+                                        class="xai-project-img" loading="lazy">
                                 </div>
                                 <div class="xai-project-info">
                                     <div class="xai-project-meta">
@@ -626,10 +764,12 @@
                         </div>
 
                         <!-- 11. Advance Billing SaaS -->
-                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="saas" data-wow-delay="1.0s" data-project-id="11">
+                        <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item-wrapper wow fadeInUp" data-category="saas"
+                            data-wow-delay="1.0s" data-project-id="11">
                             <div class="xai-project-card" onclick="openProjectDetail(11)">
                                 <div class="xai-project-poster">
-                                    <img src="img/products/billing-saas.webp" alt="Advance Billing SaaS Application" class="xai-project-img" loading="lazy">
+                                    <img src="img/products/billing-saas.webp" alt="Advance Billing SaaS Application"
+                                        class="xai-project-img" loading="lazy">
                                     <span class="xai-coming-soon-badge">Coming Soon</span>
                                 </div>
                                 <div class="xai-project-info">
@@ -659,111 +799,114 @@
 
         <!-- Footer Start -->
         <footer class="footer">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-logo mb-4 text-center text-md-start">
-                        <img src="img/logo-trans.png?v=4.0" alt="GlobalX Logo"
-                            class="footer-brand-logo mx-auto mx-md-0 d-block">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-logo mb-4 text-center text-md-start">
+                            <img src="img/logo-trans.png?v=4.0" alt="GlobalX Logo"
+                                class="footer-brand-logo mx-auto mx-md-0 d-block">
+                        </div>
+
+                        <p class="mb-4">Building digital solutions for tomorrow. We build secure, scalable, and modern
+                            application software using modern frameworks.</p>
+                        <div class="d-flex">
+                            <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                            <a class="social-icon-btn" href="https://www.linkedin.com/company/globalxsoftware/"
+                                target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a class="social-icon-btn" href="https://www.instagram.com/globalx.software/"
+                                target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+                                    class="fab fa-instagram"></i></a>
+                            <!-- <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-twitter"></i></a> -->
+                        </div>
                     </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="text-white mb-4">Company</h5>
+                        <ul class="footer-links">
+                            <!-- <li><a href="index.html">Home</a></li> -->
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <!-- <li><a href="blog.html">Blog</a></li> -->
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-conditions.html">Term & Conditions</a></li>
+                            <li><a href="disclaimer.html">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="text-white mb-4">Resources</h5>
+                        <ul class="footer-links">
+                            <li><a href="portfolio.html">Products</a></li>
+                            <li><a href="student-projects.html">Student Projects</a></li>
+                            <li><a href="pricing.html">Pricing Plans</a></li>
+                            <li><a href="technologies.html">Technologies</a></li>
+                            <li><a href="testimonials.html">Testimonials</a></li>
+                            <li><a href="#faq">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h5 class="text-white mb-4">Services</h5>
+                        <ul class="footer-links">
+                            <li><a href="service.html">Website Development</a></li>
+                            <li><a href="service.html">Mobile App Development</a></li>
+                            <li><a href="service.html">Custom Software</a></li>
+                            <li><a href="service.html">SaaS Application</a></li>
+                            <li><a href="service.html">ERP & CRM Solutions</a></li>
+                            <li><a href="service.html">E-Commerce Solutions</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h5 class="text-white mb-4">Contact Info</h5>
 
-                    <p class="mb-4">Building digital solutions for tomorrow. We build secure, scalable, and modern
-                        application software using modern frameworks.</p>
-                    <div class="d-flex">
-                        <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a class="social-icon-btn" href="https://www.linkedin.com/company/globalxsoftware/"
-                            target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon-btn" href="https://www.instagram.com/globalx.software/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <!-- <a class="social-icon-btn" href="#" target="_blank"><i class="fab fa-twitter"></i></a> -->
+                        <div class="footer-contact-wrap">
+                            <!-- Email -->
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="footer-contact-content">
+                                    <span class="footer-contact-label">Email</span>
+                                    <a href="mailto:globalx.software@gmail.com" class="footer-contact-val">
+                                        globalx.software@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon">
+                                    <i class="fa fa-phone-alt"></i>
+                                </div>
+                                <div class="footer-contact-content">
+                                    <span class="footer-contact-label">Phone</span>
+                                    <a href="tel:+919272399002" class="footer-contact-val">
+                                        +91 92723 99002
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Office -->
+                            <div class="footer-contact-item">
+                                <div class="footer-contact-icon">
+                                    <i class="fa fa-map-marker-alt"></i>
+                                </div>
+                                <div class="footer-contact-content">
+                                    <span class="footer-contact-label">Office</span>
+                                    <p class="footer-contact-val footer-contact-address mb-0">
+                                        C/o Global Computers, Dhanora Road, Nandurbar 425412 Maharashtra India
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="text-white mb-4">Company</h5>
-                    <ul class="footer-links">
-                        <!-- <li><a href="index.html">Home</a></li> -->
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <!-- <li><a href="blog.html">Blog</a></li> -->
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-conditions.html">Term & Conditions</a></li>
-                        <li><a href="disclaimer.html">Disclaimer</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="text-white mb-4">Resources</h5>
-                    <ul class="footer-links">
-                        <li><a href="portfolio.html">Products</a></li>
-                        <li><a href="student-projects.html">Student Projects</a></li>
-                        <li><a href="pricing.html">Pricing Plans</a></li>
-                        <li><a href="technologies.html">Technologies</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
-                        <li><a href="#faq">FAQs</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="text-white mb-4">Services</h5>
-                    <ul class="footer-links">
-                        <li><a href="service.html">Website Development</a></li>
-                        <li><a href="service.html">Mobile App Development</a></li>
-                        <li><a href="service.html">Custom Software</a></li>
-                        <li><a href="service.html">SaaS Application</a></li>
-                        <li><a href="service.html">ERP & CRM Solutions</a></li>
-                        <li><a href="service.html">E-Commerce Solutions</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Contact Info</h5>
-
-                    <div class="footer-contact-wrap">
-                        <!-- Email -->
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon">
-                                <i class="fa fa-envelope"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Email</span>
-                                <a href="mailto:globalx.software@gmail.com" class="footer-contact-val">
-                                    globalx.software@gmail.com
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon">
-                                <i class="fa fa-phone-alt"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Phone</span>
-                                <a href="tel:+919272399002" class="footer-contact-val">
-                                    +91 92723 99002
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Office -->
-                        <div class="footer-contact-item">
-                            <div class="footer-contact-icon">
-                                <i class="fa fa-map-marker-alt"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Office</span>
-                                <p class="footer-contact-val footer-contact-address mb-0">
-                                    C/o Global Computers, Dhanora Road, Nandurbar 425412 Maharashtra India
-                                </p>
-                            </div>
-                        </div>
+                <div class="row mt-5 pt-4 border-top border-secondary-subtle justify-content-center text-center">
+                    <div class="col-md-8">
+                        <p class="mb-0 small text-muted">&copy; 2026 GlobalX. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 pt-4 border-top border-secondary-subtle justify-content-center text-center">
-                <div class="col-md-8">
-                    <p class="mb-0 small text-muted">&copy; 2026 GlobalX. All Rights Reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
         <!-- Footer End -->
 
         <!-- Floating Actions Widgets -->
@@ -786,7 +929,7 @@
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
         <!-- Custom Javascript -->
-        <script src="js/main.js?v=3.7"></script>
+        <script src="js/main.js?v=7.1"></script>
 
         <!-- Direct Fail-Safe Portfolio Click & Hash Handler -->
         <script>
