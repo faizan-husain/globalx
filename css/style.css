@@ -326,14 +326,14 @@ a:hover {
 
 /* Explicitly keep arrow pointing DOWN when closed, even if touched/hovered/focused */
 .navbar-dark .navbar-nav .dropdown-toggle[aria-expanded="false"]::after,
-.navbar-dark .navbar-nav .dropdown:not(.show) > .dropdown-toggle:not(.show)::after {
+.navbar-dark .navbar-nav .dropdown:not(.show)>.dropdown-toggle:not(.show)::after {
     transform: rotate(45deg) !important;
     border-color: rgba(255, 255, 255, 0.6) !important;
     margin-top: -2px !important;
 }
 
 /* Arrow points UP only when actually expanded/open */
-.navbar-dark .navbar-nav .dropdown.show > .dropdown-toggle::after,
+.navbar-dark .navbar-nav .dropdown.show>.dropdown-toggle::after,
 .navbar-dark .navbar-nav .dropdown-toggle.show::after,
 .navbar-dark .navbar-nav .dropdown-toggle[aria-expanded="true"]::after {
     transform: rotate(-135deg) !important;
@@ -343,7 +343,7 @@ a:hover {
 
 /* On Desktop screens only, rotate on hover */
 @media (min-width: 992px) {
-    .navbar-dark .navbar-nav .dropdown:hover > .dropdown-toggle:not([aria-expanded="false"])::after {
+    .navbar-dark .navbar-nav .dropdown:hover>.dropdown-toggle:not([aria-expanded="false"])::after {
         transform: rotate(-135deg) !important;
         border-color: #FFFFFF !important;
         margin-top: 2px !important;
@@ -488,8 +488,9 @@ a:hover {
 
 /* Hide nested Legal submenu inside Company on mobile devices since standalone LEGAL menu exists below */
 @media (max-width: 991.98px) {
+
     .dropdown-submenu,
-    .dropdown-menu > .dropdown-divider {
+    .dropdown-menu>.dropdown-divider {
         display: none !important;
     }
 }
@@ -1192,6 +1193,7 @@ a:hover {
         opacity: 0;
         transform: translate3d(-36px, 0, 0);
     }
+
     100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -1203,6 +1205,7 @@ a:hover {
         opacity: 0;
         transform: translate3d(36px, 0, 0);
     }
+
     100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -1227,6 +1230,7 @@ a:hover {
             opacity: 0;
             transform: translate3d(0, 24px, 0);
         }
+
         100% {
             opacity: 1;
             transform: translate3d(0, 0, 0);
@@ -1238,6 +1242,7 @@ a:hover {
             opacity: 0;
             transform: translate3d(0, 24px, 0);
         }
+
         100% {
             opacity: 1;
             transform: translate3d(0, 0, 0);
@@ -1809,36 +1814,46 @@ a.footer-contact-val:hover {
     .footer {
         text-align: center;
     }
+
     .footer .footer-logo {
         text-align: center !important;
     }
+
     .footer .footer-brand-logo {
         margin-left: auto !important;
         margin-right: auto !important;
     }
+
     .footer p:not(.footer-contact-val):not(.footer-contact-address) {
         text-align: center !important;
     }
+
     .footer .d-flex {
         justify-content: center !important;
     }
+
     .footer h5 {
         text-align: center !important;
     }
+
     .footer-links {
         text-align: center !important;
         padding-left: 0 !important;
     }
+
     .footer-links li {
         text-align: center !important;
     }
+
     .footer-links a {
         display: inline-block !important;
         text-align: center !important;
     }
+
     .footer-links a:hover {
         transform: translateY(-2px) !important;
     }
+
     .footer-contact-wrap {
         width: 100% !important;
         max-width: 320px !important;
@@ -1848,6 +1863,7 @@ a.footer-contact-val:hover {
         gap: 18px !important;
         text-align: left !important;
     }
+
     .footer-contact-item {
         display: flex !important;
         flex-direction: row !important;
@@ -1857,10 +1873,12 @@ a.footer-contact-val:hover {
         gap: 14px !important;
         width: 100% !important;
     }
+
     .footer-contact-icon {
         margin: 2px 0 0 0 !important;
         flex-shrink: 0 !important;
     }
+
     .footer-contact-content {
         display: flex !important;
         flex-direction: column !important;
@@ -1869,12 +1887,14 @@ a.footer-contact-val:hover {
         text-align: left !important;
         flex: 1 !important;
     }
+
     .footer-contact-label {
         text-align: left !important;
         display: block !important;
         margin: 0 0 2px 0 !important;
         padding: 0 !important;
     }
+
     .footer-contact-val,
     a.footer-contact-val,
     p.footer-contact-val,
@@ -1887,6 +1907,7 @@ a.footer-contact-val:hover {
         padding: 0 !important;
         line-height: 1.5 !important;
     }
+
     .system-status-beacon {
         margin-left: auto !important;
         margin-right: auto !important;
@@ -1907,6 +1928,7 @@ a.footer-contact-val:hover {
         margin-top: 1.5rem !important;
         margin-bottom: 2rem !important;
     }
+
     .discover-btn-wrap .btn {
         margin: 0 auto !important;
     }
@@ -2142,6 +2164,7 @@ a.footer-contact-val:hover {
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -3357,8 +3380,8 @@ a.footer-contact-val:hover {
         align-items: flex-start !important;
     }
 
-    .navbar > .container,
-    .navbar > .container-fluid {
+    .navbar>.container,
+    .navbar>.container-fluid {
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
@@ -3732,7 +3755,7 @@ a.footer-contact-val:hover {
         margin-right: -6px !important;
     }
 
-    .row > * {
+    .row>* {
         padding-left: 6px !important;
         padding-right: 6px !important;
         max-width: 100% !important;
@@ -3783,7 +3806,11 @@ a.footer-contact-val:hover {
     }
 
     /* Prevent media & uninitialized carousels from widening viewport */
-    img, video, canvas, svg, iframe {
+    img,
+    video,
+    canvas,
+    svg,
+    iframe {
         max-width: 100% !important;
         height: auto;
     }
@@ -3818,6 +3845,7 @@ a.footer-contact-val:hover {
 
 /* Ultra-compact screens safeguard (<= 359.98px) */
 @media (max-width: 359.98px) {
+
     .navbar,
     .navbar.sticky-top,
     .navbar.scrolled {
